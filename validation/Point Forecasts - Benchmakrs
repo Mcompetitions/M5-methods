@@ -1,7 +1,3 @@
-setwd("C:/Users/FSU_Team/Desktop/M5 dataset")
-
-
-
 #Load libraries
 library(zoo)
 library(randomForest)
@@ -917,7 +913,5 @@ for (mid in 1:length(b_names)){
   colnames(frc)[1:2] <- c("Agg_Level_1", "Agg_Level_2")
   frc$id <- paste0(frc$Agg_Level_1,"_",frc$Agg_Level_2,"_validation")
   frc <- frc[,c("id", colnames(frc)[3:30])]
-  write.csv(frc, row.names = FALSE, paste0("PF_", b_names[mid],".csv"))
-  
-  
+  write.csv(frc, row.names = FALSE, paste0("PF_", b_names[mid],".csv")) 
 }
