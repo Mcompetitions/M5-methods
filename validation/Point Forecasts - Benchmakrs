@@ -1,4 +1,6 @@
-set_up <- "validation"
+setwd("C:/Users/FSU_Team/Desktop/M5 dataset")
+
+
 
 #Load libraries
 library(zoo)
@@ -11,15 +13,10 @@ library(plyr)
 library(forecast)
 
 #Read data
-if (set_up=="evaluation"){
-  sales <- read.csv("sales_train_evaluation.csv", stringsAsFactors = F)
-  calendar <- read.csv("calendar.csv", stringsAsFactors = F) ; calendar$date <- as.Date(calendar$date)
-  prices <- read.csv("sell_prices.csv", stringsAsFactors = F)
-}else{
-  sales <- read.csv("sales_train_validation.csv", stringsAsFactors = F)
-  calendar <- read.csv("calendar.csv", stringsAsFactors = F) ; calendar$date <- as.Date(calendar$date)
-  prices <- read.csv("sell_prices.csv", stringsAsFactors = F)
-}
+sales <- read.csv("sales_train_validation.csv", stringsAsFactors = F)
+calendar <- read.csv("calendar.csv", stringsAsFactors = F) ; calendar$date <- as.Date(calendar$date)
+prices <- read.csv("sell_prices.csv", stringsAsFactors = F)
+
 
 #This function returns some basic statistics about the forecasted series
 statistics <- function(tsid){
@@ -62,13 +59,10 @@ statistics <- function(tsid){
   ex_calendar <- merge(calendar, ex_price, by=c("wm_yr_wk"), all.x = T) #merge with calendar
   ex_calendar <- ex_calendar[order(ex_calendar$date),] ; row.names(ex_calendar) <- NULL
   ex_dataset <- ex_calendar[,c("date", "wm_yr_wk", "sell_price")]
-  if (set_up=="evaluation"){
-    ex_dataset$sales <- c(rep(NA, nrow(ex_dataset)-lngth-28), input$x, rep(NA, 28))
-    ex_dataset <- head(tail(ex_dataset,2*28),28)
-  }else{
-    ex_dataset$sales <- c(rep(NA, nrow(ex_dataset)-lngth-56), input$x, rep(NA, 56))
-    ex_dataset <- head(tail(ex_dataset,3*28),28)
-  }
+  
+  ex_dataset$sales <- c(rep(NA, nrow(ex_dataset)-lngth-56), input$x, rep(NA, 56))
+  ex_dataset <- head(tail(ex_dataset,3*28),28)
+  
   
   dollar_sales <- sum(ex_dataset$sell_price*ex_dataset$sales, na.rm = T)
   
@@ -425,11 +419,9 @@ cl = registerDoSNOW(makeCluster(8, type = "SOCK"))
 #############################################################################################################
 ##########      Estimate some basic statistics and the dollar sales used for weighting  #####################
 stat_total <- foreach(tsi=1:length(time_series_b), .combine='rbind') %dopar% statistics(tsi)
-if (set_up=="evaluation"){
-  save.image("PFs - evaluation/Series and Stats.Rdata")
-}else{
-  save.image("PFs - validation/Series and Stats.Rdata")
-}
+
+save.image("Series and Stats.Rdata")
+
 #############################################################################################################
 
 
@@ -486,21 +478,17 @@ b_names <- c("Naive", "sNaive", "SES", "MA",
              "Com_b","Com_t","Com_tb","Com_lg")
 frc_total <- frc_total[,c(b_names,"item_id","dept_id","cat_id","store_id","state_id","fh")]
 
-if (set_up=="evaluation"){
-  save.image("PFs - evaluation/Base Forecasts.Rdata")
-}else{
-  save.image("PFs - validation/Base Forecasts.Rdata")
-}
+
+save.image("Base Forecasts.Rdata")
+
 #############################################################################################################
 
 
 #############################################################################################################
 ###################################      Evaluate forecasts       ###########################################
-if (set_up=="evaluation"){
-  sales_out <- read.csv("sales_test_evaluation.csv", stringsAsFactors = F)
-}else{
-  sales_out <- read.csv("sales_test_validation.csv", stringsAsFactors = F)
-}
+
+sales_out <- read.csv("sales_test_validation.csv", stringsAsFactors = F)
+
 
 #Level 12	- Unit sales of product x, aggregated for each store - 30,750
 errors_total <- NULL
@@ -900,15 +888,11 @@ row.names(WRMSSE) <- c("Total", "State", "Store",
                        "Category", "Department", "State-Category",
                        "State-Department", "Store-Category", "Store-Department",
                        "Product", "Product-State", "Product-Store", "Average")
-if (set_up=="evaluation"){
-  write.csv(WRMSSE, "PFs - evaluation/summary.csv") #Score per level and in total
-  write.csv(stat_total, "PFs - evaluation/stat_total.csv") #Basic statistics about the series
-  save.image("PFs - evaluation/Evaluation WRMSSE.Rdata")
-}else{
-  write.csv(WRMSSE, "PFs - validation/summary.csv")
-  write.csv(stat_total, "PFs - validation/stat_total.csv")
-  save.image("PFs - validation/Evaluation WRMSSE.Rdata")
-}
+
+write.csv(WRMSSE, "summary.csv")
+write.csv(stat_total, "stat_total.csv")
+save.image("Evaluation WRMSSE.Rdata")
+
 
 #############################################################################################################
 # Export benchmarks' forecasts in Kaggle format
@@ -931,14 +915,9 @@ for (mid in 1:length(b_names)){
     }
   }
   colnames(frc)[1:2] <- c("Agg_Level_1", "Agg_Level_2")
-  if (set_up=="evaluation"){
-    frc$id <- paste0(frc$Agg_Level_1,"_",frc$Agg_Level_2,"_evaluation")
-    frc <- frc[,c("id", colnames(frc)[3:30])]
-    write.csv(frc, row.names = FALSE, paste0("PF_", b_names[mid],".csv"))
-  }else{
-    frc$id <- paste0(frc$Agg_Level_1,"_",frc$Agg_Level_2,"_validation")
-    frc <- frc[,c("id", colnames(frc)[3:30])]
-    write.csv(frc, row.names = FALSE, paste0("PF_", b_names[mid],".csv"))
-  }
+  frc$id <- paste0(frc$Agg_Level_1,"_",frc$Agg_Level_2,"_validation")
+  frc <- frc[,c("id", colnames(frc)[3:30])]
+  write.csv(frc, row.names = FALSE, paste0("PF_", b_names[mid],".csv"))
+  
   
 }
