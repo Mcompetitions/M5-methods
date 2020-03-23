@@ -221,6 +221,7 @@ iMAPA <- function(x, h){
     frc <- rbind(frc, rep(SexpS(as.numeric(na.omit(as.numeric(rollapply(tail(x, (length(x) %/% al)*al), al, FUN=sum, by = al)))), 1)/al, h))
   }
   forecast <- colMeans(frc)
+  return(forecast)
 }
 MLP_local <- function(input, fh, ni){
   
@@ -250,7 +251,6 @@ MLP_local <- function(input, fh, ni){
     frc_f <- rbind(frc_f, MLf)
   }
   frc <- unlist(lapply(c(1:fh), function(x) median(frc_f[,x])))
-  
   return(frc)
 }
 RF_local <- function(input, fh, ni){
