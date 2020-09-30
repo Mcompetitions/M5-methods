@@ -11,6 +11,8 @@ Data, Benchmarks, and submissions made to the M5 forecasting competition
 
 >"Scores and Ranks.xlsx": Includes the scores and ranks of the top-50 submissions of the M5 Accuracy and M5 Uncertainty competition. The scores of the benchmarks is also provided.
 
->"M5-Competitors-Guide.pdf": Provides information about the set-up of the competition, the dataset, the evaluation measures, the prizes, the submission files and the benchmarks. 
+>"M5-Competitors-Guide.pdf": Provides information about the set-up of the competition, the dataset, the evaluation measures, the prizes, the submission files and the benchmarks.
+
+>"M5_accuracy_competition.pdf": Presents the results, findings and conclusions of the M5 Accuracy competition.
 
 
