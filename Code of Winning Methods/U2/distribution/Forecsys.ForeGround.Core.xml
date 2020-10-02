@@ -1,0 +1,615 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Forecsys.ForeGround.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Forecsys.ForeGround.Core.BaseModule">
+            <summary>
+            Базовый класс для модуля ForeGround. От этого класса
+            могут быть унаследованы все новые модули и схемы.
+            TODO: Имеет смысл закешировать вызовы GetType().GetProperty(name);
+            </summary>
+        </member>
+        <member name="F:Forecsys.ForeGround.Core.BaseModule._moduleInfo">
+            <summary>
+            Текущая информация об экземпляре данного модуля.
+            Устанавливается в конструкторе дочернего модуля.
+            </summary>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.BaseModule.#ctor">
+            <summary>
+            Вызывает виртуальную функцию Initialize.
+            </summary>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.BaseModule.Context">
+            <summary>
+            Контекст выполнения
+            </summary>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.BaseModule.InitByObject(System.Object)">
+            <summary>
+            Инициализация модуля анонимным объектом
+            Несовпадающие имена полей объекта и модуля игнорируются.
+            </summary>
+            <param name="obj"></param>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.BaseModule.Initialize">
+            <summary>
+            Функция инициализации модуля, вызываемая из конструкутора
+            после инициализации модуля дефолтной структурой.
+            </summary>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.BaseModule.CollectOutputObject">
+            <summary>
+            Собирает результаты работы модуля в его выходную структуру
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.BaseModule.Execute(Forecsys.ForeGround.Core.ExecutionContext)">
+            <summary>
+            Выполнение модуля в конкретном контексте исполнения.
+            Не используйте вызов этой функции явно! Для запуска модуля в контексте
+            есть метод ExecutionContext.Execute.
+            </summary>
+            <param name="ctx"></param>        
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.BaseModule.Prepare">
+            <summary>
+            Выполнить подготовку модуля к исполнению - проверить то, что заданы все обязательные входы
+            и проставить значение по умолчанию.
+            </summary>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.BaseModule.Execute">
+            <summary>
+            Выполнение модуля в новом контексте исполнения.
+            Данный метод не следует использовать внутри реализации кода схемы или другого модуля.
+            Вместо этого, необходимо использовать вызов <seealso cref="M:Forecsys.ForeGround.Core.BaseModule.ExecuteChild(Forecsys.ForeGround.Core.BaseModule)"/>.
+            </summary>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.BaseModule.ExecuteImpl">
+            <summary>
+            Функция, реализующая логику работы модуля.
+            </summary>        
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.BaseModule.ExecuteChild(Forecsys.ForeGround.Core.BaseModule)">
+            <summary>
+            Запускает module в качестве дочернего модуля по отношению к текущему в его
+            контексте исполнения.
+            </summary>
+            <param name="module">Запускаемый модуль.</param>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.BaseModule.ModuleInfo">
+            <summary>
+            Метаинформация о входах и выходах модуля.
+            </summary>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.BaseModule.SetInputValue(System.String,System.Object)">
+            <summary>
+            Установка значения на вход модуля. Равносильно выполнению
+            присваивания свойству класса с модулем.
+            </summary>
+            <param name="name">Имя входа модуля.</param>
+            <param name="obj">Объект.</param>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.BaseModule.SetObject(System.Object,System.String)">
+            <summary>
+            Синоним для функции SetInputValue. Используется для обратной
+            совместимости по синтаксису с Foreground 1.0
+            </summary>
+            <param name="obj"></param>
+            <param name="name"></param>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.BaseModule.GetInputValue(System.String)">
+            <summary>
+            Возвращает значение объекта на входе модуля.
+            </summary>
+            <param name="name">Имя объекта</param>
+            <returns></returns>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.BaseModule.GetOutputValue(System.String)">
+            <summary>
+            Возвращает значение объекта на выходе модуля.
+            </summary>
+            <param name="name">Имя объекта.</param>
+            <returns></returns>
+            <exception cref="T:System.MemberAccessException">В случае, если объекта с таким именем нет.</exception>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.BaseModule.GetObject(System.String,System.Object@)">
+            <summary>
+            Записывает значение объекта на выходе модуля в переменную obj.
+            </summary>
+            <param name="name">Имя объекта.</param>
+            <param name="obj">Объект, в котором будет содержаться результат.</param>
+            <returns>True, в случае совпадения типа и наличия объекта с таким именем.</returns>
+            <exception cref="T:System.MemberAccessException">В случае, если объекта с таким именем нет.</exception>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.BaseModule.ContainsInput(System.String)">
+            <summary>
+            Возвращает true, если модуль содержит вход с данным именем.
+            </summary>
+            <param name="inputName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.BaseModule.SetInputsFrom(Forecsys.ForeGround.Core.BaseModule)">
+            <summary>
+            Задать входные параметры из другого модуля
+            </summary>
+            <param name="from"></param>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.BaseModule.CreateFromSource(System.String)">
+            <summary>
+            Создаёт модуль по исходному коду. Возвращает первый попавшийся модуль из исходного кода.
+            Скомпилированная сборка кладётся в Environment.SpecialFolders.Templates.
+            </summary>
+            <param name="source">Исходный код, содержащий все необходимые using.</param>
+            <returns>Экземпляр модуля, описанного в исходном коде.</returns>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.BaseModule.CreateFromSource(System.String,System.String)">
+            <summary>
+            Создаёт модуль по исходному коду. Возвращает модуль типа moduleType.
+            Если moduleType - пустая строка, возвращает первый попавшийся модуль из исходного кода.
+            Скомпилированная сборка кладётся в Environment.SpecialFolders.Templates.
+            </summary>
+            <param name="source">Исходный код, содержащий все необходимые using.</param>
+            <param name="moduleType">Имя типа модуля c пространством имён.</param>
+            <returns>Экземпляр модуля, описанного в исходном коде.</returns>
+        </member>
+        <member name="T:Forecsys.ForeGround.Core.CreateIfNullAttribute">
+            <summary>
+            Аттрибут используется для указания возможности 
+            создания объекта при заполнении дефолтных значений
+            </summary>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.CreateIfNullAttribute.CreateIfNull">
+            <summary>
+            Разрешено ли заполнять свойство, если онон не определено.
+            (Этот парамер аттрибута используется только в заполнении дефолтных значений!)
+            </summary>
+        </member>
+        <member name="T:Forecsys.ForeGround.Core.ModuleCompiler">
+            <summary>
+            Компилирует базовые модули из исходного кода.
+            </summary>
+        </member>
+        <member name="F:Forecsys.ForeGround.Core.ModuleCompiler._compilerLock">
+            <summary>
+            Переменная лока для компилятора. Данная переменная лочится
+            при параллельной компиляции.
+            TODO: Сделать так, чтобы лочилась только компиляция одного и того же исходного кода.
+            </summary>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.ModuleCompiler.CompiledAssemblyDirectory">
+            <summary>
+            Директория, содержащая откомпилированные сборки.
+            </summary>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.ModuleCompiler.#ctor">
+            <summary>
+            Компилятор исходного кода модуля.
+            </summary>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.ModuleCompiler.GenerateAssemblyName(System.String)">
+            <summary>
+            Генерирует полный путь к сборке с модулем.
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.ModuleCompiler.CompilerErrors">
+            <summary>
+            Ошибки компиляции модуля.
+            </summary>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.ModuleCompiler.CreateModule(System.String,System.String)">
+            <summary>
+            Компилирует исходный код модуля в новую сборку, загружает ее в память,
+            возвращает тип moduleTypeName из этой сборки. Если moduleTypeName
+            не задано, возвращает первый попавшийся модуль из сборки.
+            </summary>
+            <param name="codeToCompile">Исходный код, включающий все необходимые using.</param>
+            <param name="moduleTypeName">Полное имя типа вместе с Namespace.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.ModuleCompiler.CreateModule(System.String)">
+            <summary>
+            Компилирует исходный код модуля в новую сборку, загружает ее в память,
+            возвращает тип moduleTypeName из этой сборки. 
+            </summary>
+            <param name="codeToCompile"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.ModuleCompiler.LoadTypeFromAssembly(System.String)">
+            <summary>
+            Загружает тип из откомпилированной сборки.
+            </summary>
+            <param name="moduleTypeName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Forecsys.ForeGround.Core.InstanceItem">
+            <summary>
+             Элемент xml с инстансами
+            </summary>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.InstanceItem.#ctor">
+            <summary>
+             Пустой конструктор
+            </summary>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.InstanceItem.#ctor(System.String,System.String)">
+            <summary>
+             Конструктор с параметрами.
+            </summary>
+            <param name="id">имя объекта</param>
+            <param name="val">значение объекта</param>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.InstanceItem.Name">
+            <summary>
+             Имя свойства класса, которое будет заполненно.
+            </summary>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.InstanceItem.ValueString">
+            <summary>
+             Строковое представление объекта. Может содержать имя типа, но оно не используется,
+             так как тип определяется типом заполняемого свойства класса. 
+            </summary>
+        </member>
+        <member name="T:Forecsys.ForeGround.Core.InstanceInfo">
+            <summary>
+            Класс преобразования 
+            </summary>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.InstanceInfo.AddItem(Forecsys.ForeGround.Core.InstanceItem)">
+            <summary>
+             Добавление объекта.
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.InstanceInfo.ItemCount">
+            <summary>
+             Количество объектов
+            </summary>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.InstanceInfo.Item(System.Int32)">
+            <summary>
+             Можно взять объект по индексу.
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.InstanceInfo.Version">
+            <summary>
+             Версия xml.
+            </summary>
+            <exception cref="T:System.ApplicationException">Возникает при некорректной версии xml. 
+             Ожидается версия '1.1'.</exception>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.InstanceInfo.Items">
+            <summary>
+             Список объектов
+            </summary>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.InstanceInfo.GetXmlInstance">
+            <summary>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.InstanceInfo.GetInstanceInfo(System.String)">
+            <summary>
+             Класс для создания экземпляра класса по строке.
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.InstanceInfo.ToString">
+            <summary>
+            Возвращает XML представление инстанса.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Forecsys.ForeGround.Core.Instanciator">
+            <summary>
+            Класс для заполнения свойств модулей объектами из xml-инстанса.
+            </summary>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.Instanciator.Info">
+            <summary>
+             Структура объектов xml-инстанса.
+            </summary>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.Instanciator.#ctor(Forecsys.ForeGround.Core.InstanceInfo)">
+            <summary>
+             Конструктор.
+            </summary>
+            <param name="info">Структура с объектами.</param>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.Instanciator.#ctor(System.String)">
+            <summary>
+             Конструктор по xml-строке.
+            </summary>
+            <param name="xmlInfo">xml-строка, из которой берется строковое представление объектов.</param>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.Instanciator.FillModule(Forecsys.ForeGround.Core.BaseModule)">
+            <summary>
+             Заполняет свойства модуля, подаваемого на вход, объектами из InstanceInfo
+            </summary>
+            <param name="module">модуль, у которого заполняются поля.</param>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.Instanciator.CreateObject(System.Type,System.String)">
+            <summary>
+            Создаёт объект типа type по его сериализованному представлению.
+            Работает на основе статического метода Parse с одним аргументом
+            string. Если данного метода нет в типе type, возвращает null.
+            </summary>
+            <param name="type"></param>
+            <param name="valueString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.Instanciator.GenerateInputInstance(Forecsys.ForeGround.Core.BaseModule)">
+            <summary>
+            Генерирует полный инстанс входных объектов по модулю. В инстансе
+            будут все объекты, поданные на вход модулю кроме равных null.
+            </summary>
+            <param name="module">Модуль, по которому будет построен инстанс</param>
+            <returns></returns>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.Instanciator.GenerateFullInstance(Forecsys.ForeGround.Core.BaseModule)">
+            <summary>
+            Генерирует полный инстанс модуля - значения на всех входах
+            и выходах, не равных null.
+            </summary>
+            <param name="module">Модуль, по которому будет построен инстанс</param>
+            <returns></returns>
+        </member>
+        <member name="T:Forecsys.ForeGround.Core.ModuleCallbackEventArgs">
+            <summary>
+            Аргументы события ModuleCallback модуля.
+            </summary>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.ModuleCallbackEventArgs.#ctor">
+            <summary>
+            Создание экземпляра класса. Значение процента исполнения
+            устанавливается равным 0.
+            </summary>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.ModuleCallbackEventArgs.#ctor(System.Double)">
+            <summary>
+            Создание экземпляра класса по значению процента исполенения
+            </summary>
+            <param name="percent"></param>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.ModuleCallbackEventArgs.Abort">
+            <summary>
+            Нужно ли останавливать исполнение программы.
+            </summary>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.ModuleCallbackEventArgs.Percent">
+            <summary>
+            Значение процента выполнения модуля.
+            </summary>
+        </member>
+        <member name="T:Forecsys.ForeGround.Core.ObjectFactory">
+            <summary>
+            Фабрика - помошник при создании объектов.
+            </summary>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.ObjectFactory.CreateObject(System.String)">
+            <summary>
+            Создает объект н
+            </summary>
+            <param name="typeName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.ObjectFactory.FindTypeByName(System.String)">
+            <summary>
+            Поиск типа по полному имени в текущем домене приложения.
+            </summary>
+            <param name="typeName">Имя типа</param>
+            <returns>Null, если тип не был найден.</returns>
+        </member>
+        <member name="T:Forecsys.ForeGround.Core.SkipGenerationAttribute">
+            <summary>
+            Элементы, помеченные этим атрибутом, не будут учтены при генерации.
+            </summary>
+        </member>
+        <member name="T:Forecsys.ForeGround.Core.ExecutionContext">
+            <summary>
+            Контекст исполнения модулей.
+            </summary>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.ExecutionContext.Id">
+            <summary>
+            Идентификатор текущего контекста.
+            </summary>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.ExecutionContext.ExecutingModule">
+            <summary>
+            Текущий исполняемый модуль.
+            </summary>
+        </member>
+        <member name="E:Forecsys.ForeGround.Core.ExecutionContext.EventCallback">
+            <summary>
+            Событие, генерируемое модулем, когда тот хочет сообщить процент выполнения
+            и спросить пользователя о необходимости прервать выполнение.
+            </summary>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.ExecutionContext.#ctor">
+            <summary>
+            Создает новый контекст исполнения.
+            </summary>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.ExecutionContext.ExecuteModule(Forecsys.ForeGround.Core.BaseModule)">
+            <summary>
+            Запускает модуль в текущем контексте исполнения.
+            </summary>
+            <param name="module"></param>        
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.ExecutionContext.UpdateProgress(System.Double)">
+            <summary>
+            Используется для обновления прогресса и получения
+            ответа от пользователя - продолжать ли исполнение схемы.
+            </summary>
+            <param name="percent"></param>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.ExecutionContext.LogDebug(System.String)">
+            <summary>
+            Отладочное сообщение.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.ExecutionContext.LogInfo(System.String)">
+            <summary>
+            Обычное сообщение.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.ExecutionContext.LogWarn(System.String)">
+            <summary>
+            Сообщение-предупреждение.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.ExecutionContext.LogError(System.String)">
+            <summary>
+            Сообщение об ошибке.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.ExecutionContext.LogFatal(System.String)">
+            <summary>
+            Сообщение об очень серьозной ошибке.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:Forecsys.ForeGround.Core.InputAttribute">
+            <summary>
+            Используется для указания того, что свойство класса
+            является входом модуля.
+            </summary>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.InputAttribute.IsRequired">
+            <summary>
+            Является ли данный вход обязательным.
+            </summary>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.InputAttribute.Default">
+            <summary>
+            Строковое представление объекта-значения
+            по умолчанию на данном входе.
+            </summary>
+        </member>
+        <member name="T:Forecsys.ForeGround.Core.InputOutputInformation">
+            <summary>
+            Информация о входе или выходе модуля.
+            </summary>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.InputOutputInformation.Name">
+            <summary>
+            Имя
+            </summary>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.InputOutputInformation.Type">
+            <summary>
+            Тип данных
+            </summary>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.InputOutputInformation.IsRequired">
+            <summary>
+            Является ли обязательным.
+            </summary>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.InputOutputInformation.DefaultValue">
+            <summary>
+            Значение по умолчанию.
+            </summary>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.InputOutputInformation.ToString">
+            <summary>
+            Преобразовывает экземпляр класса в строку "[Type] [Name]"
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Forecsys.ForeGround.Core.ModuleInformation">
+            <summary>
+            Метаописание модуля.
+            </summary>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.ModuleInformation.InputStructureType">
+            <summary>
+            Тип входной структуры модуля.
+            </summary>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.ModuleInformation.OutputStructureType">
+            <summary>
+            Тип выходной структуры модуля.
+            </summary>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.ModuleInformation.#ctor(System.Type)">
+            <summary>
+             Создание метаописания модуля по типу.
+            </summary>
+            <param name="moduleType"></param>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.ModuleInformation.ModuleType">
+            <summary>
+            Строгое имя типа модуля.
+            </summary>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.ModuleInformation.Inputs">
+            <summary>
+            Список описаний входов модуля.
+            </summary>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.ModuleInformation.Outputs">
+            <summary>
+            Список описаний выходов модуля.
+            </summary>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.ModuleInformation.GetInputInformation(System.String)">
+            <summary>
+             Информация о входе модуля.
+            </summary>
+            <param name="name">имя входа (свойство в модуле)</param>
+            <returns>информация о входе</returns>
+            <exception cref="T:System.ApplicationException">возникает, 
+             когда запрашивается информация о несуществующем входе</exception>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.ModuleInformation.ContainsInput(System.String)">
+            <summary>
+            Возвращает true, если модуль содержит вход
+            с заданным именем.
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.ModuleInformation.Of(System.Type)">
+            <summary>
+            Возвращает информацию о модуле по его типу.
+            </summary>
+            <param name="moduleType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Forecsys.ForeGround.Core.OutputAttribute">
+            <summary>
+            Используется для указания того, что свойство класса
+            является выходом модуля.
+            </summary>
+        </member>
+        <member name="P:Forecsys.ForeGround.Core.OutputAttribute.IsRequired">
+            <summary>
+            Является ли данный выход обязательным.
+            </summary>
+        </member>
+        <member name="T:Forecsys.ForeGround.Core.UserCancelledException">
+            <summary>
+            Исключение этого типа выбрасывается в случае прерывания исполнения
+            модуля пользователем.
+            </summary>
+        </member>
+        <member name="M:Forecsys.ForeGround.Core.UserCancelledException.#ctor(System.String)">
+            <summary>
+            Создаёт экземпляр исключения.
+            </summary>
+            <param name="message">Сообщение.</param>
+        </member>
+    </members>
+</doc>

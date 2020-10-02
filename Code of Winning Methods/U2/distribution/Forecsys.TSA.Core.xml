@@ -1,0 +1,2183 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Forecsys.TSA.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Forecsys.TSA.Core.Algorithms.AlgorithmDebugInfo">
+            <summary>
+            Отладочная информация алгоритма
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.Algorithms.AlgorithmMessage.Type">
+            <summary>
+            Тип сообщения
+            0 - Ошибка
+            1 - Предупреждение
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.Algorithms.AlgorithmMessage.Message">
+            <summary>
+            Текст сообщения
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Algorithms.BaseAlgorithm.CompareInputs">
+            <summary>
+            Сравнение входных данных алгоритма.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Algorithms.BaseAlgorithm.CompareParameters">
+            <summary>
+            Сравнение параметров алгоритма.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Algorithms.BaseAlgorithm.CompareResults">
+            <summary>
+            Сравнение выходов алгоритма.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:Forecsys.TSA.Core.TableStructField._recordPropertyName">
+            <summary>
+            Имя свойства в классе одной записи таблицы
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.TableStructField.RecordPropertyName">
+            <summary>
+            Имя свойства в классе одной записи таблицы
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.ATableStruct">
+            <summary>
+            ToDo:
+            1) Sort (check MyQuickSort first)
+            2) Remove by indexes
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ATableStruct.SortTableStructByField(System.String)">
+            <summary>
+            Выполнить сортировку таблицы по полю
+            </summary>
+            <param name="fieldName">Название поля, для которого выполняется сортировка</param>
+            <returns>Новая таблица, включающая отсторированные элементы</returns>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ATableStruct.CheckStructAndGetStructLength(System.Boolean)">
+            <summary>
+            Проверить структуру и получить длину (количество строк)
+            </summary>
+            <param name="emptyIsOk">Допускаются ли пустые поля</param>
+            <returns>Длина структуры</returns>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ATableStruct.AddFieldsValuesFromRecords``1(System.Collections.Generic.List{``0},System.Boolean)">
+            <summary>
+            Задать значения полей таблицы из списка объектов записей
+            </summary>
+            <typeparam name="T">Тип записи</typeparam>
+            <param name="records">Список записей</param>
+            <param name="emptyIsOk">Допускаются ли пустые поля</param>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ATableStruct.GetTableToRecordsPropertyBindings``1">
+            <summary>
+            Получить привязки свойств таблицы к свойствам записи на основе атрибутов в свойства таблицы
+            </summary>
+            <typeparam name="T">Тип записи</typeparam>
+            <returns>Словарь, Ключ - свойство таблицы, Значение - свойство записи</returns>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ATableStruct.GetTableStructAsRecords``1(System.Boolean)">
+            <summary>
+            Получить таблицу в виде списка объектов из записей
+            </summary>
+            <typeparam name="T">Тип записи (должен соответствовать атрибутам, указанным в таблице)</typeparam>
+            <param name="emptyIsOk">Допускаются ли пустые поля в записи</param>
+            <returns>Список объектов с записями в таблице</returns>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ATableStruct.GetRecordByIndex``1(System.Int32,System.Boolean)">
+            <summary>
+            Получить одну запись по индексу
+            </summary>
+            <typeparam name="T">Тип записи (должен соответствовать атрибутам, указанным в таблице)</typeparam>
+            <param name="index">Индекс объекта</param>
+            <param name="emptyIsOk">Допускаются ли пустые поля в записи</param>
+            <returns></returns>
+        </member>
+        <member name="T:Forecsys.TSA.Core.BarChart">
+            <summary>
+            Класс гистограммы.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.#ctor">
+            <summary>
+            Стандартный конструктор.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.#ctor(System.Double,System.Double,System.Int32)">
+            <summary>
+            Конструктор стандартной гистограммы с границами MinValue и MaxValue и количеством точек PointsCount.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.#ctor(System.Double,System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double},System.Int32)">
+            <summary>
+            Конструктор по полному набору параметров.
+            </summary>
+            <param name="leftBound">Левая граница гистограммы.</param>
+            <param name="barBounds">Массив правых границ столбиков.</param>
+            <param name="barValues">Массив высот столбиков.</param>
+            <param name="pointCount">Количество точек, по которым построена гистограмма.</param>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.#ctor(System.Double,System.Collections.Generic.IEnumerable{System.Double},System.Collections.Generic.IEnumerable{System.Double},System.Int32)">
+            <summary>
+            Конструктор по полному набору параметров.
+            </summary>
+            <param name="leftBound">Левая граница гистограммы.</param>
+            <param name="barBounds">Массив правых границ столбиков.</param>
+            <param name="barValues">Массив высот столбиков.</param>
+            <param name="pointCount">Количество точек, по которым построена гистограмма.</param>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.#ctor(System.Collections.Generic.IEnumerable{System.Double},System.Double)">
+            <summary>
+            Конструктор по массиву точек и ширине столбика.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.#ctor(Forecsys.TSA.Core.TimeSeries,System.Boolean)">
+            <summary>
+            Конструктор по временному ряду.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.#ctor(System.Double[])">
+            <summary>
+            Конструктор по массиву точек
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.#ctor(System.Collections.Generic.List{System.Double})">
+            <summary>
+            Конструктор по временному ряду.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.Clone">
+            <summary>
+            Клонировать объект.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.BarChart.Bar">
+            <summary>
+            Класс столбика.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BarChart.Bar.Middle">
+            <summary>
+            Середина столбика.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BarChart.Bar.Height">
+            <summary>
+            Высота столбика.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BarChart.Bar.Width">
+            <summary>
+            Ширина столбика.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.Bar.#ctor">
+            <summary>
+            Пустой конструктор.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.Bar.#ctor(System.Double,System.Double,System.Double)">
+            <summary>
+            Конструктор с параметрами.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BarChart.LeftBound">
+            <summary>
+            Левая граница гистограммы.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BarChart.RightBound">
+            <summary>
+            Правая граница гистограммы.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BarChart.BarArray">
+            <summary>
+            Возвращает список высот столбцов
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BarChart.BarBound">
+            <summary>
+            Возвращает список границ столбцов
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BarChart.BarCount">
+            <summary>
+            Количество столбиков.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BarChart.PointsCount">
+            <summary>
+            Количество точек, по которым построена гистограмма.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.op_Addition(Forecsys.TSA.Core.BarChart,System.Double)">
+            <summary>
+            Сложение гистограммы с числом.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.op_Addition(Forecsys.TSA.Core.BarChart,Forecsys.TSA.Core.BarChart)">
+            <summary>
+            Сложение гистограмм.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.Random(System.Int32)">
+            <summary>
+            Генерация случайных чисел из распределения гистограммы.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.Random(System.Random)">
+            <summary>
+            Генерация случайного числа из распределения гистограммы.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.Add(System.Double)">
+            <summary>
+            Сложение гистограммы с числом.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.op_Multiply(Forecsys.TSA.Core.BarChart,Forecsys.TSA.Core.BarChart)">
+            <summary>
+            Перемножение гистограмм.
+            </summary>
+            <param name="bc1"></param>
+            <param name="bc2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.Mult(System.Double)">
+            <summary>
+            Умножение гистограммы на число.
+            Некорректно работает с отрицательными коэффициентами.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.ReverseFromZero">
+            <summary>
+            Перевернуть гистограмму относительно нуля - по сути правильно умножить на -1.
+            </summary>
+            <returns>Перевернутая гистограмма</returns>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.Stat">
+            <summary>
+            Рассчитывает базовую статистику гистограммы (histstat).
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.Stat(System.Double@,System.Double@)">
+            <summary>
+            Рассчитывает базовые статистики гистограммы (histstat).
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.Quantile(System.Double)">
+            <summary>
+            Возвращает квантиль заданного порядка  (histquantile).
+            </summary>
+            <param name="quantileOrder">Порядок квантили.</param>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.Segment(System.Double,System.Double)">
+            <summary>
+            Рассчитывает вероятность квантильного сегмента от q1 до q2 (histsegm).
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.ReduceTo(System.Double)">
+            <summary>
+            Функция выбирает из гистограммы только те столбики, куда могли попадать значения,
+            кратные заданному кванту: в результирующей гистограмме середины столбиков кратны кванту,
+            ширины столбиков равны кванту, а вероятности получаются из исходной гистограммы
+            выбором целиком столбиков, содержащих кратные кванту значения.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.ToNonNegative">
+            <summary>
+            Формирует новую гистограмму, у которой все столбцы с отрицательными аргументами агрегированы в один
+            </summary>
+            <returns>Новый объект гистограммы</returns>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.LinearCombination(System.Collections.Generic.List{Forecsys.TSA.Core.BarChart},System.Collections.Generic.List{System.Double})">
+            <summary>
+            Линейная комбинация плотностей распределения, заданных гистограммами (histlincomb).
+            </summary>
+            <param name="barCharts">Массив гистограмм.</param>
+            <param name="weights">Веса для каждой гистограммы.</param>
+            <returns>Результирующая гистограмма.</returns>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.Bins(System.Int32)">
+            <summary>
+            Функция реализует эвристику по подсчету количества столбиков в
+            гистограмме в зависимости от размера выборки (histbins).
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.IsEmpty">
+            <summary>
+            Проверка гистограммы на пустоту.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.IsCorrect">
+            <summary>
+            Проверка гистограммы на корректность.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.GetBarIndex(System.Double)">
+            <summary>
+            Получить номер столбика по значению.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.IncreaseBarValue(System.Double,System.Double)">
+            <summary>
+            Увеличить значение столбика, в который попадает точка point, на значение value.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.GetProbability(System.Double,System.Boolean)">
+            <summary>
+            Получить вероятность значения по данной гистограмме.
+            </summary>
+            <param name="point">Значение.</param>
+            <param name="includeRight">Включать ли правую границу</param>
+            <returns>Вероятность.</returns>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.GetProbability(System.Double,System.Int32@,System.Boolean)">
+            <summary>
+            Получить вероятность значения по данной гистограмме (histprob).
+            Левая граница столбика принадлежит столбику, правая - опционально.
+            </summary>
+            <param name="point">Значение.</param>
+            <param name="index">Выходной параметр: номер столбика.</param>
+            <param name="includeRight">Включать ли правую границу</param>
+            <returns>Вероятность.</returns>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.Normalize">
+            <summary>
+            Нормализовать гистограмму.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.IsNormalized">
+            <summary>
+            Проверить, нормализована ли гистограмма.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.GetBarMiddle(System.Int32)">
+            <summary>
+            Получить середину столбика с номером index.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.GetBarMiddles">
+            <summary>
+            Массив середин столбиков.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.GetBars">
+            <summary>
+            Массив столбиков.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.GetBarWidth(System.Int32)">
+            <summary>
+            Получить ширину столбика с номером index.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.GetBarLeftBound(System.Int32)">
+            <summary>
+            Получить левую границу столбика с номером index.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.GetBarRightBound(System.Int32)">
+            <summary>
+            Получить правую границу столбика с номером index.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.GetBarValue(System.Int32)">
+            <summary>
+            Получить высоту столбика с номером i.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.Equals(System.Object)">
+            <summary>
+            Сравнение по значению.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.Equals(Forecsys.TSA.Core.BarChart)">
+            <summary>
+            Сравнение по значению.
+            Метод добавлен для лучшей производительности.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.EqualsWithPrecision(Forecsys.TSA.Core.BarChart,System.Double)">
+            <summary>
+            Сравнение по значению с учетом допустимой погрешности
+            </summary>
+            <param name="other">Гистограмма, с которой производится сравнение</param>
+            <param name="precision">Допустимая погрешность</param>
+            <returns>True - равны, False - не равны</returns>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChart.GetHashCode">
+            <summary>
+            Хэш-код, соответствующий новой функции Equals.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.BarChartExtension">
+            <summary>
+            Расширения и статические методы класса гистограммы.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChartExtension.FromValuesAndWeights(System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double})">
+            <summary>
+            Сформировать гистограмму из значений и весов.
+            Число столбцов рассчитывается
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BarChartExtension.VariationalFromValuesAndWeights(System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double})">
+            <summary>
+            Сформировать вариацонный ряд в формате гистограммы из значений и весов.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.CrossValidationPoint">
+            <summary>
+            Точка в скользящем контроле прогноза
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.CrossValidationPoint.HistoryEndDate">
+            <summary>
+            Дата конца истории, от которой строилась точка.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.CrossValidationPoint.Delay">
+            <summary>
+            Отсрочка точки от HistoryEndDate.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.CrossValidationPoint.Forecast">
+            <summary>
+            Значение прогноза.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.CrossValidationPoint.Fact">
+            <summary>
+            Фактическое значение.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.CrossValidationPoint.BarChart">
+            <summary>
+            Прогноз-распределение.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.CrossValidationPoint.Residual">
+            <summary>
+            Невязки прогноза.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.CrossValidationPoint.DeepClone">
+            <summary>
+            Создать глубокую копию объекта точки.
+            </summary>
+            <returns>Объект копии.</returns>
+        </member>
+        <member name="M:Forecsys.TSA.Core.DoubleExtensions.FormatDateTimeFromDays(System.Double)">
+            <summary>
+            Получить дату из количества дней (от 0) (формат DateNum Matlab)
+            </summary>
+            <param name="daysCount">Количество дней с 0-й отметки</param>
+            <returns>Оъект даты/времени</returns>
+        </member>
+        <member name="M:Forecsys.TSA.Core.DoubleExtensions.CeilTo(System.Double,System.Double)">
+            <summary>
+            Функция округляет вверх заданное число до кратности передаваемого параметра
+            </summary>
+            <param name="value">Исходное число</param>
+            <param name="to">Кратность</param>
+            <returns>Результат округления</returns>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TsaList.FromValue``1(System.Int32,``0)">
+            <summary>
+            Сформировать список, включающий несколько элементов одного значения
+            </summary>
+            <typeparam name="T">Тип элементов списка</typeparam>
+            <param name="count">Требуемое количество элементов в списке</param>
+            <param name="value">Требуемое значение каждого элемента</param>
+            <returns>Список значений</returns>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Extensions.FormatDateTimeFromDays(System.Double)">
+            <summary>
+            Получить дату из количества дней (от 0) (формат DateNum Matlab)
+            </summary>
+            <param name="daysCount">Количество дней с 0-й отметки</param>
+            <returns>Оъект даты/времени</returns>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Extensions.ToNextDate(System.DateTime,System.DateTime,Forecsys.TSA.Core.PointUnit)">
+            <summary>
+            Сформировать набор дат из интервала от текущей даты до следующей.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Extensions.NanMax(System.Collections.Generic.List{System.Collections.Generic.List{System.Double}})">
+            <summary>
+            NanMax by columns
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Extensions.RoundTo(System.Double,System.Double)">
+            <summary>
+            % Функция округляет заданное число до кратности передаваемого параметра
+            </summary>
+            <param name="number">Исходное число</param>
+            <param name="to">Кратность</param>
+            <returns>Результат округления</returns>
+        </member>
+        <member name="T:Forecsys.TSA.Core.ForecastCrossValidation">
+            <summary>
+            Скользящий контроль прогноза
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.ForecastCrossValidation.Points">
+            <summary>
+            Точки скользящего контроля.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ForecastCrossValidation.DeepClone">
+            <summary>
+            Создать глубокую копию объекта скользящего контроля.
+            </summary>
+            <returns>Объект копии.</returns>
+        </member>
+        <member name="T:Forecsys.TSA.Core.FrcResultWithTask">
+            <summary>
+            Результат прогноза с привязкой к заданию.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.FrcResultWithTask.Task">
+            <summary>
+            Задание на прогноз в датах.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.FrcResultWithTask.Forecast">
+            <summary>
+            Результат прогнозирования.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.FrcResultWithTask.BarChart">
+            <summary>
+            Гистограмма прогноза.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.FrcResultWithTask.ToString">
+            <summary>
+            Преобразовать объект в строку.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.Helpers.Excel.CsvExport">
+             <summary>
+             Simple CSV export
+             Example:
+               CsvExport myExport = new CsvExport();
+            
+               myExport.AddRow();
+               myExport["Region"] = "New York, USA";
+               myExport["Sales"] = 100000;
+               myExport["Date Opened"] = new DateTime(2003, 12, 31);
+            
+               myExport.AddRow();
+               myExport["Region"] = "Sydney \"in\" Australia";
+               myExport["Sales"] = 50000;
+               myExport["Date Opened"] = new DateTime(2005, 1, 1, 9, 30, 0);
+            
+             Then you can do any of the following three output options:
+               string myCsv = myExport.Export();
+               myExport.ExportToFile("Somefile.csv");
+               byte[] myCsvData = myExport.ExportToBytes();
+             </summary>
+        </member>
+        <member name="F:Forecsys.TSA.Core.Helpers.Excel.CsvExport._fields">
+            <summary>
+            To keep the ordered list of column names
+            </summary>
+        </member>
+        <member name="F:Forecsys.TSA.Core.Helpers.Excel.CsvExport._rows">
+            <summary>
+            The list of rows
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.Helpers.Excel.CsvExport.CurrentRow">
+            <summary>
+            The current row
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.Helpers.Excel.CsvExport.Item(System.String)">
+            <summary>
+            Set a value on this column
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Helpers.Excel.CsvExport.AddRow">
+            <summary>
+            Call this before setting any fields on a row
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Helpers.Excel.CsvExport.MakeValueCsvFriendly(System.Object)">
+            <summary>
+            Converts a value to how it should output in a csv file
+            If it has a comma, it needs surrounding with double quotes
+            Eg Sydney, Australia -> "Sydney, Australia"
+            Also if it contains any double quotes ("), then they need to be replaced with quad quotes[sic] ("")
+            Eg "Dangerous Dan" McGrew -> """Dangerous Dan"" McGrew"
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Helpers.Excel.CsvExport.Export">
+            <summary>
+            Output all rows as a CSV returning a string
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Helpers.Excel.CsvExport.ExportToFile(System.String)">
+            <summary>
+            Exports to a file
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Helpers.Excel.CsvExport.ExportToBytes">
+            <summary>
+            Exports as raw UTF8 bytes
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.Helpers.Excel.TsaExcel">
+            <summary>
+            Экспорт объектов TSA в Excel.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Helpers.Excel.TsaExcel.ExportBarChart(Forecsys.TSA.Core.BarChart,System.String)">
+            <summary>
+            Экспорт гистограммы.
+            </summary>
+            <param name="barChart">Гистограмма.</param>
+            <param name="filename">Файл с расширением CSV.</param>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Helpers.Excel.TsaExcel.ExportMarking(Forecsys.TSA.Core.Marking,System.String)">
+            <summary>
+            Экспорт разметки.
+            </summary>
+            <param name="timeSeries">Временной ряд.</param>
+            <param name="filename">Файл с расширением CSV.</param>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Helpers.Excel.TsaExcel.ExportTimeSeries(Forecsys.TSA.Core.TimeSeries,System.String)">
+            <summary>
+            Экспорт временного ряда.
+            </summary>
+            <param name="timeSeries">Временной ряд.</param>
+            <param name="filename">Файл с расширением CSV.</param>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Helpers.Excel.TsaExcel.ExportList(System.Collections.Generic.List{System.Double},System.String)">
+            <summary>
+            Экспорт массива.
+            </summary>
+            <param name="values">Список значений.</param>
+            <param name="filename">Файл с расширением CSV.</param>
+        </member>
+        <member name="T:Forecsys.TSA.Core.Helpers.TsaMath">
+            <summary>
+            Расширение класса Math.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Helpers.TsaMath.Round(System.Double)">
+            <summary>
+            Реализует функцию Round в матлаб-стиле.
+            </summary>
+            <remarks>Round(0.5) = 1 (like Matlab), but Math.Round(0.5) = 0</remarks>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Helpers.TsaMath.RoundHalfIsNext(System.Double)">
+            <summary>
+            Реализует функцию Round в матлаб-стиле.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Helpers.TsaMath.NanMax(System.Double,System.Double)">
+            <summary>
+            Реализует функцию Max в матлаб-стиле.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Helpers.TsaMath.NanMin(System.Double,System.Double)">
+            <summary>
+            Реализует функцию Min в матлаб-стиле.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Helpers.TsaMath.Max(System.DateTime,System.DateTime)">
+            <summary>
+            Максимум из двух дат.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Helpers.TsaMath.Min(System.DateTime,System.DateTime)">
+            <summary>
+            Минимум из двух дат.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ListExtensions.ListEqual``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0})">
+            <summary>
+            Метод сравнения списков по значению.
+            Значения в списках должны быть типами-значениями.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.DictionaryExtensions.DictionaryEqual``2(System.Collections.Generic.IDictionary{``0,``1},System.Collections.Generic.IDictionary{``0,``1})">
+            <summary>
+            Метод сравнения словарей по значению.
+            Ключи и значения в словарях должны быть типами-значениями.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.EnumerableExtension.AddValues(System.Collections.Generic.List{System.Double},System.Int32)">
+            <summary>
+            Добавить в список count нулей.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.EnumerableExtension.AddValues(System.Collections.Generic.List{System.Double},System.Int32,System.Double)">
+            <summary>
+            Добавть в список count значений value.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.EnumerableExtension.AddValues(System.Collections.Generic.List{System.Int32},System.Int32)">
+            <summary>
+            Добавить в список count нулей.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.EnumerableExtension.AddValues(System.Collections.Generic.List{System.Double},System.Int32,System.Int32)">
+            <summary>
+            Добавть в список count значений value.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.HierarchyTimeSeries">
+            <summary>
+            Временной ряд, входящий в иерархию
+            то есть являющийся агрегатором других рядов или 
+            частью агрегации
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.HierarchyTimeSeries.ContextSeries">
+            <summary>
+            Исходный временной ряд
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.HierarchyTimeSeries.ParentTimeSeries">
+            <summary>
+            Родительский временной ряд
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.HierarchyTimeSeries.ChildTimeSeries">
+            <summary>
+            Дочерний временной ряд
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.PointUnit">
+            <summary>
+            Единица, в которой представлена точка временного ряда
+            или задание
+            </summary>
+        </member>
+        <member name="F:Forecsys.TSA.Core.PointUnit.Day">
+            <summary>
+            Один день
+            </summary>
+        </member>
+        <member name="F:Forecsys.TSA.Core.PointUnit.Month">
+            <summary>
+            Один месяц
+            </summary>
+        </member>
+        <member name="F:Forecsys.TSA.Core.PointUnit.Hour">
+            <summary>
+            Один час
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.PointHash.BaseIntHash`1">
+            <summary>
+            Базовый класс хэш-таблицы с ключом типа int и значением типа T.
+            </summary>
+            <typeparam name="T">Тип значения элементов хэш-таблицы.</typeparam>
+        </member>
+        <member name="M:Forecsys.TSA.Core.PointHash.BaseIntHash`1.#ctor">
+            <summary>
+            Стандартный конструктор.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.PointHash.BaseIntHash`1.DefaultValue">
+            <summary>
+            Значение по умолчанию, которое возвращается для всех точек, не заданных в хэш-таблице.
+            Должно быть задано в реализации класса.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.PointHash.BaseIntHash`1.DefaultValueEqual(`0)">
+            <summary>
+            Проверка value на равенство значению по-умолчанию.
+            Используется, так как эти значения могут быть несравнимы (например, NaN).
+            Должен быть задан в реализации класса.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.PointHash.BaseIntHash`1.Equals(System.Object)">
+            <summary>
+            Сравнение по значению.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.PointHash.BaseIntHash`1.Equals(Forecsys.TSA.Core.PointHash.BaseIntHash{`0})">
+            <summary>
+            Сравнение по значению.
+            Метод добавлен для лучшей производительности.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.PointHash.BaseIntHash`1.GetHashCode">
+            <summary>
+            Хэш-код, соответствующий новой функции Equals.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.PointHash.BaseIntHash`1.Clear">
+            <summary>
+            Очистить хэш.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.PointHash.BaseIntHash`1.SetValue(System.Int32,`0)">
+            <summary>
+            Установить значение в хэше.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.PointHash.BaseIntHash`1.Delete(System.Int32)">
+            <summary>
+            Удалить ключ из хэша.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.PointHash.BaseIntHash`1.DeleteAll(System.Func{`0,System.Boolean})">
+            <summary>
+            Удалить все элементы, попадающие под фильтр.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.PointHash.BaseIntHash`1.GetValue(System.Int32)">
+            <summary>
+            Получить значение из хэша.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.PointHash.BaseIntHash`1.Contains(System.Int32)">
+            <summary>
+            Проверить наличие ключа в хэше.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.PointHash.BaseIntHash`1.MinIndex">
+            <summary>
+            Минимальный ключ в хэше.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.PointHash.BaseIntHash`1.MaxIndex">
+            <summary>
+            Максимальный ключ в хэше.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.PointHash.BaseIntHash`1.RealCount">
+            <summary>
+            Число ключей в хэше.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.PointHash.BaseIntHash`1.Length">
+            <summary>
+            Расстояние от минимального до максимального ключа в хэше.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.PointHash.BaseIntHash`1.MinValue">
+            <summary>
+            Минимальное значение в хэше.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.PointHash.BaseIntHash`1.MaxValue">
+            <summary>
+            Максимальное значение в хэше.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.PointHash.BaseIntHash`1.MinValueIndex">
+            <summary>
+            Ключ минимального значения в хэше.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.PointHash.BaseIntHash`1.MaxValueIndex">
+            <summary>
+            Ключ максимального значения в хэше.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.PointHash.IntLongHash">
+            <summary>
+            Хэш таблица с ключом типа int и значением типа long.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.PointHash.IntLongHash.DefaultValue">
+            <summary>
+            Значение по-умолчанию для точек, не заданных в хэше.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.PointHash.IntLongHash.DefaultValueEqual(System.Int64)">
+            <summary>
+            Проверка value на равенство значению по-умолчанию.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.PointHash.IIntHash">
+            <summary>
+            Интерфейс хэш-таблицы с ключом типа int.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.PointHash.IIntHash`1">
+            <summary>
+            Шаблонный интерфейс хэш-таблицы с ключом типа int и значением типа T.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.PointHash.IntDoubleHash">
+            <summary>
+            Хэш таблица с ключом типа int и значением типа double.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.PointHash.IntDoubleHash.DefaultValue">
+            <summary>
+            Значение по-умолчанию для точек, не заданных в хэше.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.PointHash.IntDoubleHash.DefaultValueEqual(System.Double)">
+            <summary>
+            Проверка value на равенство значению по-умолчанию.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.TimeSeries">
+            <summary>
+            Класс временного ряда со значениями типа double.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TimeSeries.#ctor(Forecsys.TSA.Core.PointUnit)">
+            <summary>
+            Стандартный конструктор.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TimeSeries.#ctor(System.Int32,Forecsys.TSA.Core.PointUnit)">
+            <summary>
+            Конструктор, создающий в ряде count нулей.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TimeSeries.#ctor(System.Int32,System.Double,Forecsys.TSA.Core.PointUnit)">
+            <summary>
+            Конструктор, создающий в ряде count значений value.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TimeSeries.#ctor(System.Collections.Generic.IEnumerable{System.Double},Forecsys.TSA.Core.PointUnit)">
+            <summary>
+            Конструктор, создающий ряд из массива values.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TimeSeries.#ctor(System.Collections.Generic.List{System.Double},Forecsys.TSA.Core.PointUnit)">
+            <summary>
+            Конструктор, создающий ряд из массива values.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TimeSeries.#ctor(System.Collections.Generic.Dictionary{System.DateTime,System.Double},Forecsys.TSA.Core.PointUnit)">
+            <summary>
+            Конструктор, создающий ряд из словаря values. В качестве
+            даты начала ряда берется первая дата в словаре.
+            </summary>
+            <param name="values"></param>
+            <param name="unit"></param>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TimeSeries.#ctor(System.DateTime,Forecsys.TSA.Core.PointUnit)">
+            <summary>
+            Конструктор, задающий дату начала.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TimeSeries.#ctor(System.DateTime,System.Collections.Generic.List{System.Double},Forecsys.TSA.Core.PointUnit)">
+            <summary>
+            Конструктор, создающий ряд из массива values и задающий дату начала.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TimeSeries.#ctor(System.DateTime,System.Collections.Generic.Dictionary{System.DateTime,System.Double},Forecsys.TSA.Core.PointUnit)">
+            <summary>
+            Конструктор, создающий ряд из словаря values и задающий дату начала.
+            </summary>
+            <param name="beginDate"></param>
+            <param name="values"></param>
+            <param name="unit"></param>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TimeSeries.Clone">
+            <summary>
+            Клонировать объект.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TimeSeries.CloneWithUnitChange(Forecsys.TSA.Core.PointUnit)">
+            <summary>
+            Клонировать временной ряд с изменением единины измерения.
+            Сами точки не изменяются. Использовать для конвертации рядов в старом формате.
+            </summary>
+            <returns>Ряд с измененной единицей измерения</returns>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TimeSeries.CloneWithUnit(Forecsys.TSA.Core.PointUnit)">
+            <summary>
+            Создать копию, задав единицу измерения ряда
+            </summary>
+            <param name="unit">Единица измерения точки ряда</param>
+            <returns>Копия с указанной единице измерения</returns>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TimeSeries.GetSubSeries(System.Int32,System.Int32)">
+            <summary>
+            Вырезать временной ряд от start до end включительно.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TimeSeries.GetSubSeries(System.DateTime,System.DateTime)">
+            <summary>
+            Вырезать временной ряд от start до end включительно.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TimeSeries.Normalize">
+            <summary>
+            Нормализовать ряд.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TimeSeries.Sum">
+            <summary>
+            Рассчитать сумму ряда.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TimeSeries.Average">
+            <summary>
+            Рассчитать среднее ряда.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TimeSeries.Parse(System.String)">
+            <summary>
+            Сгенерировать объект из строки.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TimeSeries.Multiply(System.Double)">
+            <summary>
+            Выполнить умножение всех значений временного ряда на коэффициент
+            </summary>
+            <param name="coefficient">Коэффициент</param>
+            <returns>Новый временной ряд, включающий умноженные значения</returns>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TimeSeries.CutAfterDate(System.DateTime)">
+            <summary>
+            Обрезать временной ряд по дате
+            </summary>
+            <param name="date">Дата</param>
+            <returns>Обрезанный ряд</returns>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TimeSeries.ToString">
+            <summary>
+            Преобразовать объект в строку.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TimeSeries.op_Subtraction(Forecsys.TSA.Core.TimeSeries,Forecsys.TSA.Core.TimeSeries)">
+            <summary>
+            Вычитание рядов.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TimeSeries.op_Addition(Forecsys.TSA.Core.TimeSeries,Forecsys.TSA.Core.TimeSeries)">
+            <summary>
+            Сложение рядов.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TimeSeries.op_Multiply(Forecsys.TSA.Core.TimeSeries,Forecsys.TSA.Core.TimeSeries)">
+            <summary>
+            Поэлементное умножение рядов.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.ForecastTask">
+            <summary>
+            Задание на прогноз с поддержкой векторных отсрочек
+            и единиц измерения.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.ForecastTask.Interval">
+            <summary>
+            Интервал прогнозирования.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.ForecastTask.HistoryEndDate">
+            <summary>
+            Дата окончания истории.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.ForecastTask.Unit">
+            <summary>
+            Единица, в которой представлено задание.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.ForecastTask.SpanInUnit">
+            <summary>
+            Ширина одной точки задания (выставляется при агрегации).
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ForecastTask.AddAndSetParametersFromTask(Forecsys.TSA.Core.FrcDateTask)">
+            <summary>
+            Задать параметры векторного задания из скалярного задания.
+            </summary>
+            <param name="task">Скалярное задание.</param>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ForecastTask.AddTask(Forecsys.TSA.Core.FrcDateTask)">
+            <summary>
+            Добавить задание к коллекции.
+            </summary>
+            <param name="task">Задание.</param>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ForecastTask.CheckTaskParameters(Forecsys.TSA.Core.FrcDateTask)">
+            <summary>
+            Проверить соответствие параметров задания характеристиками коллекции.
+            </summary>
+            <param name="task"></param>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ForecastTask.DeepClone">
+            <summary>
+            Создать глубокую копию коллекции заданий.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ForecastTask.ChangeHistoryEndForCollection(System.DateTime)">
+            <summary>
+            Изменить дату конца истории у заданий.
+            </summary>
+            <param name="newHistoryEndDate"></param>
+            <returns>Новая коллекция заданий, включающих новую дату окончания истории.</returns>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ForecastTask.ChangeTasksWidth(System.Int32)">
+            <summary>
+            Изменить "ширину" зданий.
+            </summary>
+            <param name="newWidth">Новая ширина заданий.</param>
+            <returns>Новая коллекция масштабированных под новую ширину.</returns>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ForecastTask.AddDelayInUnitToDateTime(System.DateTime,System.Int32)">
+            <summary>
+            Добавить отсрочку в ед. измерения задания
+            </summary>
+            <param name="to">Дата-время, куда добавляем</param>
+            <param name="delay">Отсрочка</param>
+        </member>
+        <member name="T:Forecsys.TSA.Core.FrcDateTask">
+            <summary>
+            Задание на прогнозирование, заданное в датах.
+            </summary>
+        </member>
+        <member name="F:Forecsys.TSA.Core.FrcDateTask._unit">
+            <summary>
+            Единица, в которой представлено задание
+            </summary>
+        </member>
+        <member name="F:Forecsys.TSA.Core.FrcDateTask._spnaInUnit">
+            <summary>
+            "Ширина" точки задания - в единицах
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.FrcDateTask.BeginDate">
+            <summary>
+            Дата начала интервала прогнозирования.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.FrcDateTask.EndDate">
+            <summary>
+            Дата конца интервала прогнозирования.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.FrcDateTask.HistoryEndDate">
+            <summary>
+            Дата конца истории.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.FrcDateTask.Unit">
+            <summary>
+            Единица измерения точки задания.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.FrcDateTask.SpnaInUnit">
+            <summary>
+            Ширина точки задания в юнитах.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.FrcDateTask.#ctor(Forecsys.TSA.Core.PointUnit,System.Int32)">
+            <summary>
+            Стандартный конструктор.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.FrcDateTask.#ctor(System.DateTime,System.DateTime,System.DateTime,Forecsys.TSA.Core.PointUnit,System.Int32)">
+            <summary>
+            Конструктор, устанавливающий задание.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.FrcDateTask.#ctor(System.DateTime,System.Int32,System.Int32,Forecsys.TSA.Core.PointUnit,System.Int32)">
+            <summary>
+            Конструктор по дате конца истории, отсрочке и интервалу
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.FrcDateTask.Equals(System.Object)">
+            <summary>
+            Сравнение по значению.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.FrcDateTask.Equals(Forecsys.TSA.Core.FrcDateTask)">
+            <summary>
+            Сравнение по значению.
+            Метод добавлен для лучшей производительности.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.FrcDateTask.GetHashCode">
+            <summary>
+            Хэш-код, соответствующий новой функции Equals.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.FrcDateTask.Interval">
+            <summary>
+            Длина интервала прогнозирования.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.FrcDateTask.Delay">
+            <summary>
+            Длина отсрочки прогнозирования.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.FrcDateTask.IntervalInteger">
+            <summary>
+            Целочисленный интервал задания.
+            </summary>
+            <returns>Интервал в юнитах.</returns>
+        </member>
+        <member name="M:Forecsys.TSA.Core.FrcDateTask.DelayInteger">
+            <summary>
+            Целочисленная отсрочка задания
+            </summary>
+            <returns>Отсрочку в юнитах.</returns>
+        </member>
+        <member name="M:Forecsys.TSA.Core.FrcDateTask.ToString">
+            <summary>
+            Преобразовать объект в строку.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.FrcDateTask.AddDelayInUnitToDateTime(System.DateTime,System.Int32)">
+            <summary>
+            Добавить отсрочку в ед. измерения задания
+            </summary>
+            <param name="to">Дата-время, куда добавляем</param>
+            <param name="delay">Отсрочка</param>
+        </member>
+        <member name="M:Forecsys.TSA.Core.FrcDateTask.Clone">
+            <summary>
+            Клонировать объект.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.ForecastCalculationResult">
+            <summary>
+            Результат расчета прогноза.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.ForecastCalculationResult.Forecasts">
+            <summary>
+            Прогнозы.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.ForecastCalculationResult.CrossValidation">
+            <summary>
+            Скользящий контроль.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ForecastCalculationResult.InitializeForecastsFromTask(Forecsys.TSA.Core.ForecastTask)">
+            <summary>
+            Инициализировать объекты прогнозов из задания.
+            </summary>
+            <param name="task">Задание на прогноз</param>
+        </member>
+        <member name="T:Forecsys.TSA.Core.FrcResult">
+            <summary>
+            Значение прогноза (результат прогнозирования).
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.FrcResult.Value">
+            <summary>
+            Значение прогноза.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.FrcResult.ConfidenceTop">
+            <summary>
+            Верхняя граница доверительного интервала.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.FrcResult.ConfidenceBottom">
+            <summary>
+            Нижняя граница доверительного интервала.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.FrcResult.Clone">
+            <summary>
+            Клонировать объект.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.FrcResult.Equals(System.Object)">
+            <summary>
+            Сравнение по значению.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.FrcResult.Equals(Forecsys.TSA.Core.FrcResult)">
+            <summary>
+            Сравнение по значению.
+            Метод добавлен для лучшей производительности.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.FrcResult.GetHashCode">
+            <summary>
+            Хэш-код, соответствующий новой функции Equals.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.FrcResult.ToString">
+            <summary>
+            Преобразовать объект в строку.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.FrcResult.FromValue(System.Double)">
+            <summary>
+            Получить объект результата прогноза из значения прогноза
+            </summary>
+            <param name="value">Значение прогноза</param>
+            <returns>Результат прогноза</returns>
+        </member>
+        <member name="T:Forecsys.TSA.Core.FloatParamsTable">
+            <summary>
+            Таблица параметров типа float.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.FloatParamsTable.#ctor">
+            <summary>
+            Пустой конструктор.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.FloatParamsTable.#ctor(System.Single[])">
+            <summary>
+            Конструктор по массиву параметров.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.FloatParamsTable.Set(System.Int32,System.Double)">
+            <summary>
+            Установить значение.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.FloatParamsTable.Clone">
+            <summary>
+            Клонировать объект.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.FloatParamsTable.Parse(System.String)">
+            <summary>
+            Сгенерировать объект из строки.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.IntParamsTable">
+            <summary>
+            Таблица параметров типа int.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.IntParamsTable.#ctor">
+            <summary>
+            Пустой конструктор.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.IntParamsTable.#ctor(System.Int32[])">
+            <summary>
+            Конструктор по массиву параметров.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.IntParamsTable.Clone">
+            <summary>
+            Клонировать объект.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.IntParamsTable.Parse(System.String)">
+            <summary>
+            Сгенерировать объект из строки.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.Parameter`1">
+            <summary>
+            Базовый класс параметра.
+            </summary>
+            <typeparam name="T">Тип параметра.</typeparam>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Parameter`1.#ctor">
+            <summary>
+            Пустой конструктор.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Parameter`1.#ctor(`0)">
+            <summary>
+            Конструктор по значению.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.Parameter`1.Value">
+            <summary>
+            Получить/установить значение.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Parameter`1.op_Implicit(Forecsys.TSA.Core.Parameter{`0})~`0">
+            <summary>
+            Приведение типа.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.ParameterBool">
+            <summary>
+            Класс параметра типа bool.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParameterBool.#ctor">
+            <summary>
+            Пустой конструктор.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParameterBool.#ctor(System.Boolean)">
+            <summary>
+            Конструктор по значению.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParameterBool.Clone">
+            <summary>
+            Клонировать объект.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParameterBool.Parse(System.String)">
+            <summary>
+            Сгенерировать объект из строки.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.ParameterByte">
+            <summary>
+            Класс параметра типа byte.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParameterByte.#ctor">
+            <summary>
+            Пустой конструктор.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParameterByte.#ctor(System.Byte)">
+            <summary>
+            Конструктор по значению.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParameterByte.Clone">
+            <summary>
+            Клонировать объект.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParameterByte.Parse(System.String)">
+            <summary>
+            Сгенерировать объект из строки.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.ParameterDouble">
+            <summary>
+            Класс параметра типа double.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParameterDouble.#ctor">
+            <summary>
+            Пустой конструктор.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParameterDouble.#ctor(System.Double)">
+            <summary>
+            Конструктор по значению.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParameterDouble.Clone">
+            <summary>
+            Клонировать объект.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParameterDouble.Parse(System.String)">
+            <summary>
+            Сгенерировать объект из строки.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.ParameterFloat">
+            <summary>
+            Класс параметра типа float.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParameterFloat.#ctor">
+            <summary>
+            Пустой конструктор.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParameterFloat.#ctor(System.Single)">
+            <summary>
+            Конструктор по значению.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParameterFloat.Clone">
+            <summary>
+            Клонировать объект.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParameterFloat.Parse(System.String)">
+            <summary>
+            Сгенерировать объект из строки.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.ParameterInt">
+            <summary>
+            Класс параметра типа int.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParameterInt.#ctor">
+            <summary>
+            Пустой конструктор.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParameterInt.#ctor(System.Int32)">
+            <summary>
+            Конструктор по значению.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParameterInt.Clone">
+            <summary>
+            Клонировать объект.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParameterInt.Parse(System.String)">
+            <summary>
+            Сгенерировать объект из строки.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.ParameterString">
+            <summary>
+            Класс параметра типа string.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParameterString.#ctor">
+            <summary>
+            Пустой конструктор.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParameterString.#ctor(System.String)">
+            <summary>
+            Конструктор по значению.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParameterString.Clone">
+            <summary>
+            Клонировать объект.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParameterString.Parse(System.String)">
+            <summary>
+            Сгенерировать объект из строки.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.ParamsTable`1">
+            <summary>
+            Базовый класс таблицы параметров.
+            </summary>
+            <typeparam name="T">Тип параметра.</typeparam>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParamsTable`1.#ctor">
+            <summary>
+            Пустой конструктор.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParamsTable`1.#ctor(`0[])">
+            <summary>
+            Конструктор по массиву параметров.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParamsTable`1.Equals(System.Object)">
+            <summary>
+            Сравнение по значению.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParamsTable`1.Equals(Forecsys.TSA.Core.ParamsTable{`0})">
+            <summary>
+            Сравнение по значению.
+            Метод добавлен для лучшей производительности.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParamsTable`1.GetHashCode">
+            <summary>
+            Хэш-код, соответствующий новой функции Equals.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParamsTable`1.Get(System.Int32)">
+            <summary>
+            Получить значение.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParamsTable`1.Set(System.Int32,`0)">
+            <summary>
+            Установить значение.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParamsTable`1.Contains(System.Int32)">
+            <summary>
+            Проверить наличие значения.
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="M:Forecsys.TSA.Core.ParamsTable`1.Add(`0)">
+            <summary>
+            Добавить значение в конец.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.ParamsTable`1.Length">
+            <summary>
+            Свойство - длина массива параметров.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.ParamsTable`1.Item(System.Int32)">
+            <summary>
+            Индексатор.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.ISeries">
+            <summary>
+            Интерфейс временного ряда.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.ISeries`1">
+            <summary>
+            Интерфейс временного ряда со значением типа T.
+            </summary>
+            <typeparam name="T">Тип значения.</typeparam>
+        </member>
+        <member name="T:Forecsys.TSA.Core.Marking">
+            <summary>
+            Класс разметки со значениями типа long.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Marking.#ctor(Forecsys.TSA.Core.PointUnit)">
+            <summary>
+            Стандартный конструктор.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Marking.#ctor(System.DateTime,Forecsys.TSA.Core.PointUnit)">
+            <summary>
+            Конструктор, задающий дату начала.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Marking.#ctor(System.Int32,Forecsys.TSA.Core.PointUnit)">
+            <summary>
+            Конструктор, создающий в ряде count нулей.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Marking.#ctor(System.Int32,System.Int64,Forecsys.TSA.Core.PointUnit)">
+            <summary>
+            Конструктор, создающий в ряде count значений value.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Marking.#ctor(System.Collections.Generic.IEnumerable{System.Int64},Forecsys.TSA.Core.PointUnit)">
+            <summary>
+            Конструктор, создающий ряд из массива values.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Marking.#ctor(System.Collections.Generic.List{System.Int64},Forecsys.TSA.Core.PointUnit)">
+            <summary>
+            Конструктор, создающий ряд из массива values.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Marking.Clone">
+            <summary>
+            Клонировать объект.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Marking.Normalize">
+            <summary>
+            Нормализовать ряд.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Marking.Sum">
+            <summary>
+            Рассчитать сумму ряда.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Marking.GetSubSeries(System.Int32,System.Int32)">
+            <summary>
+            Вырезать временной ряд от start до end включительно.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Marking.GetSubSeries(System.DateTime,System.DateTime)">
+            <summary>
+            Вырезать временной ряд от start до end включительно.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Marking.Average">
+            <summary>
+            Рассчитать среднее ряда.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Marking.Parse(System.String)">
+            <summary>
+            Сгенерировать объект из строки.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Marking.ToString">
+            <summary>
+            Преобразовать объект в строку.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.Marking.op_Addition(Forecsys.TSA.Core.Marking,Forecsys.TSA.Core.Marking)">
+            <summary>
+            Сложение рядов.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.BaseSeries`1">
+            <summary>
+            Базовый класс временного ряда со значениями типа T.
+            Вспомогательные функции.
+            </summary>
+            <summary>
+            Базовый класс временного ряда со значениями типа T.
+            Основные свойства.
+            </summary>
+            <summary>
+            Базовый класс временного ряда со значениями типа T.
+            Данные и системные функции.
+            </summary>
+            <summary>
+            Базовый класс временного ряда со значениями типа T.
+            Основные функции.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.Sum">
+            <summary>
+            Рассчитать сумму ряда.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.Average">
+            <summary>
+            Рассчитать среднее ряда.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.Normalize">
+            <summary>
+            Нормализовать ряд.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.SetTimeParameters(Forecsys.TSA.Core.ISeries)">
+            <summary>
+            Скопировать временные параметры из ряда series.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.IsInGrid(System.DateTime)">
+            <summary>
+            Проверить, что дата dateTime попадает во временную сетку ряда.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.HasEqualGrids(Forecsys.TSA.Core.ISeries)">
+            <summary>
+            Проверяет совпадение временной сетки ряда с временной сеткой ряда series.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.CorrectTimeGrid(Forecsys.TSA.Core.ISeries)">
+            <summary>
+            Сдвиг BeginDate ряда к BeginDate ряда series.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BaseSeries`1.DefaultValue">
+            <summary>
+            Значение по-умолчанию для пропусков во временном ряде.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BaseSeries`1.MinIndex">
+            <summary>
+            Минимальный индекс элемента ряда.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BaseSeries`1.MinDate">
+            <summary>
+            Минимальная дата элемента ряда.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BaseSeries`1.MaxIndex">
+            <summary>
+            Максимальный индекс элемента ряда.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BaseSeries`1.MaxDate">
+            <summary>
+            Максимальная дата элемента ряда.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BaseSeries`1.RealCount">
+            <summary>
+            Общее количество элементов ряда, не считая пропусков.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BaseSeries`1.Length">
+            <summary>
+            Общее количество элементов ряда, считая пропуски.
+            Соответствует расстоянию от MinIndex до MaxIndex.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BaseSeries`1.MinValue">
+            <summary>
+            Минимальное значение в ряде.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BaseSeries`1.MaxValue">
+            <summary>
+            Максимальное значение в ряде.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BaseSeries`1.MinValueIndex">
+            <summary>
+            Индекс минимального значение в ряде.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BaseSeries`1.MaxValueIndex">
+            <summary>
+            Индекс максимального значение в ряде.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BaseSeries`1.EndDate">
+            <summary>
+            Дата последней точки ряда (дата, соответствующая MaxIndex).
+            </summary>
+        </member>
+        <member name="F:Forecsys.TSA.Core.BaseSeries`1._points">
+            <summary>
+            Хэш-таблица с ключами типа int и значениями типа T.
+            </summary>
+        </member>
+        <member name="F:Forecsys.TSA.Core.BaseSeries`1._unit">
+            <summary>
+            Единица точки временного ряда.
+            Задается только в момент создания ряда.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BaseSeries`1.DefaultBeginDate">
+            <summary>
+            Начальная дата по умолчанию.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BaseSeries`1.DefaultTimeStep">
+            <summary>
+            Временной интервал между точками по умолчанию.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BaseSeries`1.BeginDate">
+            <summary>
+            Дата, соответствующая точке хэша с ключом 0.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BaseSeries`1.TimeStep">
+            <summary>
+            Время, соответствующее расстоянию между ключами хэша, отличающимися на 1.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BaseSeries`1.PointsWidth">
+            <summary>
+            Время, соответствующее "ширине" одного элемента хэша.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BaseSeries`1.UnitPointWidth">
+            <summary>
+            Получить ширину точки в единицах измерения ряда.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BaseSeries`1.Unit">
+            <summary>
+            Единица точки временного ряда.
+            Задается только в момент создания ряда.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.DefaultInit">
+            <summary>
+            Начальная инициализация ряда значениями по умолчанию.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.#ctor(Forecsys.TSA.Core.PointHash.IIntHash{`0},Forecsys.TSA.Core.PointUnit)">
+            <summary>
+            Стандартный конструктор.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.Clone">
+            <summary>
+            Клонировать объект.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.Equals(System.Object)">
+            <summary>
+            Сравнение по значению.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.Equals(Forecsys.TSA.Core.BaseSeries{`0})">
+            <summary>
+            Сравнение по значению.
+            Метод добавлен для лучшей производительности.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.GetHashCode">
+            <summary>
+            Хэш-код, соответствующий новой функции Equals.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.AddValue(`0)">
+            <summary>
+            Добавление значения в конец ряда.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.GetValue(System.Int32)">
+            <summary>
+            Получение значения ряда по индексу.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.GetValue(System.DateTime)">
+            <summary>
+            Получение значения ряда по дате.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BaseSeries`1.Item(System.Int32)">
+            <summary>
+            Индексатор по индексу.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.BaseSeries`1.Item(System.DateTime)">
+            <summary>
+            Индексатор по дате.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.SetValue(System.Int32,`0)">
+            <summary>
+            Изменение значения по индексу index на значение value.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.SetValue(System.DateTime,`0)">
+            <summary>
+            Изменение значения по дате dateTime на значение value.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.DeleteValue(System.Int32)">
+            <summary>
+            Удаление значения по индексу index (замена его на значение по умолчанию).
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.GetSubSeries(System.Int32,System.Int32)">
+            <summary>
+            Вырезать временной ряд от start до end включительно.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.GetSubSeries(System.DateTime,System.DateTime)">
+            <summary>
+            Вырезать временной ряд от start до end включительно.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.DeleteValue(System.DateTime)">
+            <summary>
+            Удаление значения по дате dateTime (замена его на значение по умолчанию).
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.DeleteAll(System.Func{`0,System.Boolean})">
+            <summary>
+            Удаление всех значений, попадающих под фильтр.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.DeleteAfterDate(System.DateTime)">
+            <summary>
+            Удаление всех значений справа от заданной даты.
+            Значение на саму заданную дату не удаляется.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.GetDate(System.Int32)">
+            <summary>
+            Получение даты, соответствующей индексу.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.GetIndex(System.DateTime)">
+            <summary>
+            Получение индекса, соответствующего дате.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.TryGetIndex(System.DateTime,System.Int32@)">
+            <summary>
+            Попробовать получить индекс по дате.
+            В случае, если дата не попадает во временную сетку, исключение не выбрасывается.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.SetArray(System.Int32,System.Collections.Generic.List{`0})">
+            <summary>
+            Задать массив значений values начиная с индекса startIndex в ряде.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.SetArray(System.Collections.Generic.List{System.Int32},System.Collections.Generic.List{`0})">
+            <summary>
+            Задать массив значений values по индексам indexes.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.SetArray(System.Int32[],`0[])">
+            <summary>
+            Задать массив значений values по индексам indexes.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.GetArray(System.Collections.Generic.List{System.Int32}@,System.Collections.Generic.List{`0}@)">
+            <summary>
+            Получить массив значений ряда и соответствующих им индексов.
+            Пропуски в ряде в массивы не записываются.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.GetFullArray(System.Collections.Generic.List{System.Int32}@,System.Collections.Generic.List{`0}@)">
+            <summary>
+            Получить массив значений ряда и соответствующих им индексов, включая пропуски.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.GetArray(System.Collections.Generic.List{System.DateTime}@,System.Collections.Generic.List{`0}@)">
+            <summary>
+            Получить массив значений ряда и соотетствующих им дат.
+            Пропуски в ряде в массивы не записываются.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.GetFullArray(System.Collections.Generic.List{System.DateTime}@,System.Collections.Generic.List{`0}@)">
+            <summary>
+            Получить массив значений ряда и соответствующих им дат, включая пропуски.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.GetIndexes">
+            <summary>
+            Получить массив индексов ряда.
+            Пропуски в ряде в массив не записываются.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.GetFullIndexes">
+            <summary>
+            Получить массив индексов ряда, включая пропуски.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.GetDates">
+            <summary>
+            Получить массив дат ряда.
+            Пропуски в ряде в массив не записываются.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.GetFullDates">
+            <summary>
+            Получить массив дат ряда, включая пропуски.
+            От даты минимального индекса до максимального индекса.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.GetFullDatesFromZeroIndex">
+            <summary>
+            Получить массив дат ряда, включая пропуски.
+            От нулевого индекса до максимального индекса.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.GetFullValuesFromZeroIndex">
+            <summary>
+            Получить массив значений ряда, включая пропуски.
+            От нулевого индекса до максимального индекса.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.GetValues">
+            <summary>
+            Получить массив значений ряда.
+            Пропуски в ряде в массив не записываются.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.GetFullValues">
+            <summary>
+            Получить массив значений ряда, включая пропуски.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.Contains(System.DateTime)">
+            <summary>
+            Проверить наличие в ряде значения по дате.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.Contains(System.Int32)">
+            <summary>
+            Проверить наличие в ряде значения по индексу.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.BaseSeries`1.IsEmpty">
+            <summary>
+            Проверить, пустой ли ряд.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TimeSpanExtension.Mult(System.TimeSpan,System.Int32)">
+            <summary>
+            Умножение TimeSpan на число.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.DeprecatedFrcTask">
+            <summary>
+            Задание на прогнозирование, заданное в индексах.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.DeprecatedFrcTask.BeginIndex">
+            <summary>
+            Индекс начала интервала прогнозирования.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.DeprecatedFrcTask.EndIndex">
+            <summary>
+            Индекс конца интервала прогнозирования.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.DeprecatedFrcTask.HistoryEndIndex">
+            <summary>
+            Индекс конца истории.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.DeprecatedFrcTask.#ctor">
+            <summary>
+            Стандартный конструктор.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.DeprecatedFrcTask.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Конструктор, устанавливающий задание.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.DeprecatedFrcTask.Interval">
+            <summary> 
+            Длина интервала прогнозирования в индексах.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.DeprecatedFrcTask.Delay">
+            <summary>
+            Длина отсрочки прогнозирования в индексах.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.DeprecatedFrcTask.Clone">
+            <summary>
+            Клонировать объект.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.DeprecatedFrcTask.ToString">
+            <summary>
+            Преобразовать объект в строку.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.TaskTransformer">
+            <summary>
+            Преобразователь заданий в индексах и датах друг между другом.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TaskTransformer.IndexTask(Forecsys.TSA.Core.ISeries,Forecsys.TSA.Core.FrcDateTask)">
+            <summary>
+            Преобразовать задание в датах dateTask в задание в индексах, используя в качестве системы отсчёта ряд timeSeries.
+            </summary>
+        </member>
+        <member name="M:Forecsys.TSA.Core.TaskTransformer.DateTask(Forecsys.TSA.Core.ISeries,Forecsys.TSA.Core.DeprecatedFrcTask)">
+            <summary>
+            Преобразовать задание в индексах task в задание в датах, используя в качестве системы отсчёта ряд timeSeries.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.TsaException">
+            <summary>
+            Фирменное TSA-исключение.
+            </summary>
+        </member>
+        <member name="T:Forecsys.TSA.Core.TsaGlobal">
+            <summary>
+            Класс глобальных констант TSA.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.TsaGlobal.EqualityAccuracy">
+            <summary>
+            С такой точностью double числа считаются равными.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.TsaGlobal.MinBarWidth">
+            <summary>
+            Минимальная ширина столбика.
+            </summary>
+        </member>
+        <member name="P:Forecsys.TSA.Core.TsaGlobal.MaxBarWidth">
+            <summary>
+            Максимальное количество столбиков в гистограмме.
+            </summary>
+        </member>
+    </members>
+</doc>
