@@ -44,7 +44,7 @@ parso==0.7.0
 pbr==5.4.5
 pexpect==4.8.0
 pickleshare==0.7.5
-pillow==7.1.2
+pillow==8.2.0
 prettytable==0.7.2
 prometheus-client==0.8.0
 prompt-toolkit==3.0.5
@@ -126,7 +126,7 @@ parso==0.7.0
 pbr==5.4.5
 pexpect==4.8.0
 pickleshare==0.7.5
-pillow==7.1.2
+pillow==8.2.0
 prettytable==0.7.2
 prometheus-client==0.8.0
 prompt-toolkit==3.0.5
