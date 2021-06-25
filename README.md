@@ -11,7 +11,7 @@ Benchmarks and winning methods of the M5 forecasting competition
 
 The following link includes the abovomentioned items PLUS:
 
->"Dataset": The data set of the competition, i.e., unit sales (train and test set) and information about calendar, promotions, and prices. The data set is provided for the validation (public leaderboard) and evaluation (private leaderboard) phase of the competition separately. The weights used for computing the scores are also provided per case.
+>"Dataset": The data set of the competition, i.e., unit sales (train and test set) and information about calendar, promotions, and prices. The data set is provided for the validation (public leaderboard) and evaluation (private leaderboard) phases of the competition separately. The weights used for computing the scores (WRMSSE and WSPL) are also provided per case.
 
 >"Accuracy Submissions": The forecasts of the 24 benchmarks of the M5 "Accuracy" competition and the submissions made by the top 50 performing methods.
 
