@@ -16,7 +16,7 @@ The following link includes the abovomentioned items PLUS:
 
 >"Uncertainty Submissions": The forecasts of the 6 benchmarks of the M5 "Uncertainty" competition and the submissions made by the top 50 performing methods.
 
->"Working papers": Working papers describing the setup and data set of the M5 competition, as well as the results, findings and winning submissions of the "Accuracy" and "Uncertainty" challenges.
+>"Papers": Papers describing the setup and data set of the M5 competition, as well as the results, findings and winning submissions of the "Accuracy" and "Uncertainty" challenges.
 
 https://drive.google.com/drive/folders/1D6EWdVSaOtrP1LEFh1REjI3vej6iUS_4?usp=sharing
 
