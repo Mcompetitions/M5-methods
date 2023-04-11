@@ -1,5 +1,6 @@
-# M5-methods
-Benchmarks and winning methods of the M5 forecasting competition
+The repository includes
+
+>"Code of Winning Methods": The code provided by the winners of the M5 competition for replicating their submissions.
 
 >"Scores and Ranks.xlsx": Scores and ranks of the top 50 submissions of the M5 "Accuracy" and M5 "Uncertainty" competitions. The scores of the benchmarks are also provided.
 
