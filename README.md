@@ -1,8 +1,6 @@
 # M5-methods
 Benchmarks and winning methods of the M5 forecasting competition
 
->"validation": Code used for producing the forecasts of the benchmarks (both of "Accuracy" and "Uncertainty" competitions).
-
 >"Scores and Ranks.xlsx": Scores and ranks of the top 50 submissions of the M5 "Accuracy" and M5 "Uncertainty" competitions. The scores of the benchmarks are also provided.
 
 >"M5-Competitors-Guide.pdf": Provides information about the set-up of the competition, the data set, the evaluation measures, the prizes, the submission files, and the benchmarks.
