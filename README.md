@@ -18,6 +18,8 @@ The following link includes the abovomentioned items PLUS:
 
 >"Papers": Papers describing the setup and data set of the M5 competition, as well as the results, findings and winning submissions of the "Accuracy" and "Uncertainty" challenges.
 
+>"validation" R code and files that can be used for replicating the submissions of the M5 benchmarks and for understanding the evaluation setup of the competition.
+
 https://drive.google.com/drive/folders/1D6EWdVSaOtrP1LEFh1REjI3vej6iUS_4?usp=sharing
 
 
