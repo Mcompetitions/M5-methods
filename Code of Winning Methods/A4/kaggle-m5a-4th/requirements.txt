@@ -2,7 +2,7 @@
 alembic==1.4.2
 attrs==19.3.0
 backcall==0.2.0
-bleach==3.1.5
+bleach==3.3.0
 bokeh==2.1.1
 cliff==3.3.0
 cmaes==0.5.1
@@ -84,7 +84,7 @@ zipp==3.1.0
 alembic==1.4.2
 attrs==19.3.0
 backcall==0.2.0
-bleach==3.1.5
+bleach==3.3.0
 bokeh==2.1.1
 cliff==3.3.0
 cmaes==0.5.1
