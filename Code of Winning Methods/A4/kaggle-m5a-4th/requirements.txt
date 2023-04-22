@@ -50,7 +50,7 @@ prometheus-client==0.8.0
 prompt-toolkit==3.0.5
 psutil==5.7.0
 ptyprocess==0.6.0
-pygments==2.6.1
+pygments==2.7.4
 pyparsing==2.4.7
 pyperclip==1.8.0
 pyrsistent==0.16.0
@@ -132,7 +132,7 @@ prometheus-client==0.8.0
 prompt-toolkit==3.0.5
 psutil==5.7.0
 ptyprocess==0.6.0
-pygments==2.6.1
+pygments==2.7.4
 pyparsing==2.4.7
 pyperclip==1.8.0
 pyrsistent==0.16.0
