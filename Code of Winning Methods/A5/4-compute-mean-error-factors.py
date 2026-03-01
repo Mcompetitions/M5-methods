@@ -1,127 +1,111 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding: utf-8
 
-# In[1]:
-
-
-# This Python 3 environment comes with many helpful analytics libraries installed
-# It is defined by the kaggle/python Docker image: https://github.com/kaggle/docker-python
-# For example, here's several helpful packages to load
-
-import numpy as np # linear algebra
-import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
-
-# Input data files are available in the read-only "../input/" directory
-# For example, running this (by clicking run or pressing Shift+Enter) will list all files under the input directory
-
 import os
-for dirname, _, filenames in os.walk('/kaggle/input'):
-    for filename in filenames:
-        print(os.path.join(dirname, filename))
-        
+import numpy as np
+import pandas as pd
+from matplotlib import pyplot as plt
+
+# -----------------------------
+# Config
+# -----------------------------
+RAW_PATH = "./raw_data/sales_train_evaluation.csv"
+PRED_PATH = "./proc_data/partial_submission.csv"
+OUT_PATH = "./proc_data/factor.csv"
+
 pd.options.display.max_columns = 100
 pd.options.display.max_rows = 100
 
-from matplotlib import pyplot as plt
-# You can write up to 5GB to the current directory (/kaggle/working/) that gets preserved as output when you create a version using "Save & Run All" 
-# You can also write temporary files to /kaggle/temp/, but they won't be saved outside of the current session
+# -----------------------------
+# Load data
+# -----------------------------
+cols_days = [f"d_{c}" for c in range(1914, 1942)]
 
+df_eval = pd.read_csv(
+    RAW_PATH,
+    usecols=["id", "dept_id", "store_id"] + cols_days
+)
 
-# In[2]:
+df_model = pd.read_csv(PRED_PATH)
 
+# -----------------------------
+# Fix dtypes (important!)
+# -----------------------------
+pred_cols = [c for c in df_model.columns if c != "id"]
+df_model[pred_cols] = df_model[pred_cols].apply(pd.to_numeric, errors="coerce")
 
-cols_days = ['d_{}'.format(c) for c in range(1914,1942)]
+# -----------------------------
+# Merge
+# -----------------------------
+df_comparison = df_eval.merge(df_model, on="id", how="inner")
 
+# -----------------------------
+# Group means (numeric only)
+# -----------------------------
+df_comp_mean = (
+    df_comparison
+    .groupby(["dept_id", "store_id"])
+    .mean(numeric_only=True)
+)
 
-# In[3]:
+# -----------------------------
+# Plot true vs pred (raw)
+# -----------------------------
+for i in range(len(df_comp_mean)):
+    x = df_comp_mean.columns[:28]
+    y_true = df_comp_mean.iloc[i, :28].values
+    y_pred = df_comp_mean.iloc[i, 28:].values
+    dept, store = df_comp_mean.index[i]
 
+    fig, ax = plt.subplots(figsize=(10, 3), dpi=150)
+    fig.suptitle(f"Dept: {dept}     Store: {store}")
 
-df_eval = pd.read_csv('./raw_data/sales_train_evaluation.csv', usecols=['id','dept_id','store_id']+cols_days)
-df_model = pd.read_csv('./proc_data/partial_submission.csv')
-
-
-# In[4]:
-
-
-df_comparison = df_eval.merge(df_model, on='id', how='inner')
-
-
-# In[5]:
-
-
-df_comparison.groupby(['dept_id','store_id']).mean()
-
-
-# In[6]:
-
-
-df_comp_mean = df_comparison.groupby(['dept_id','store_id']).mean()
-
-
-# In[7]:
-
-
-for i in range(0, len(df_comp_mean)):
-
-    x = df_comp_mean.iloc[i,:28].index
-    y_true = df_comp_mean.iloc[i,:28].values
-    y_pred = df_comp_mean.iloc[i,28:].values
-    indice = df_comp_mean.index[i]
-
-    fig, ax = plt.subplots(figsize = (10,3), dpi=150)
-
-    fig.suptitle('Dept: {dept}     Store: {store}'.format(dept=indice[0], store=indice[1]))
-    ax.plot(x, y_true, label='True')
-    ax.plot(x, y_pred, label='Pred')
-    ax.tick_params(axis='x', rotation=45)
-
+    ax.plot(x, y_true, label="True")
+    ax.plot(x, y_pred, label="Pred")
+    ax.tick_params(axis="x", rotation=45)
     ax.legend()
 
+    plt.tight_layout()
     plt.show()
 
+# -----------------------------
+# Compute correction factors + plot adjusted preds
+# -----------------------------
+depts, stores, factors = [], [], []
 
-# In[8]:
+for i in range(len(df_comp_mean)):
+    x = df_comp_mean.columns[:28]
+    y_true = df_comp_mean.iloc[i, :28].values
+    y_pred = df_comp_mean.iloc[i, 28:].values
+    dept, store = df_comp_mean.index[i]
 
+    denom = y_pred.mean()
+    factor = y_true.mean() / denom if denom != 0 else 1.0
 
-depts = []
-stores = []
-factors = []
-
-for i in range(0, len(df_comp_mean)):
-
-    x = df_comp_mean.iloc[i,:28].index
-    y_true = df_comp_mean.iloc[i,:28].values
-    y_pred = df_comp_mean.iloc[i,28:].values
-    factor = y_true.mean()/y_pred.mean()
-    indice = df_comp_mean.index[i]
-
-    depts.append(indice[0])
-    stores.append(indice[1])
+    depts.append(dept)
+    stores.append(store)
     factors.append(factor)
-    
-    fig, ax = plt.subplots(figsize = (10,3), dpi=150)
 
-    fig.suptitle('Dept: {dept}     Store: {store}     Factor: {factor}'.format(
-        dept=indice[0], store=indice[1], factor=factor))
-    ax.plot(x, y_true, label='True')
-    ax.plot(x, y_pred*factor, label='Pred')
-    ax.tick_params(axis='x', rotation=45)
+    fig, ax = plt.subplots(figsize=(10, 3), dpi=150)
+    fig.suptitle(f"Dept: {dept}     Store: {store}     Factor: {factor:.3f}")
 
+    ax.plot(x, y_true, label="True")
+    ax.plot(x, y_pred * factor, label="Pred (Scaled)")
+    ax.tick_params(axis="x", rotation=45)
     ax.legend()
 
+    plt.tight_layout()
     plt.show()
-    
-df_factors = pd.DataFrame(data={'dept_id':depts, 'store_id':stores, 'factor':factors})
 
+# -----------------------------
+# Save factors
+# -----------------------------
+df_factors = pd.DataFrame({
+    "dept_id": depts,
+    "store_id": stores,
+    "factor": factors
+})
 
-# In[9]:
+df_factors.to_csv(OUT_PATH, index=False)
 
-
-df_factors
-
-
-# In[10]:
-
-
-df_factors.to_csv('./proc_data/factor.csv', index=False)
-
+print(f"Saved factors to: {OUT_PATH}")

@@ -1,0 +1,12 @@
+pandas
+numpy 
+matplotlib 
+lightgbm
+ipython
+pyarrow
+scikit-learn
+statsmodels
+joblib
+tqdm
+psutil
+fastparquet

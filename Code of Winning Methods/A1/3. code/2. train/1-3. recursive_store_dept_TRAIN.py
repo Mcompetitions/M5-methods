@@ -7,7 +7,7 @@
 # In[ ]:
 
 
-dir_ = '/home/artemis/M5/A1-Yeon/' # input only here
+dir_ = '../../' # input only here
 
 
 # #### setting other directory
@@ -241,7 +241,7 @@ for store_id in STORES:
         grid_df = grid_df[keep_cols]
 
         d_sales = grid_df[['d','sales']]
-        substitute = d_sales['sales'].values
+        substitute = d_sales['sales'].to_numpy(copy=True)
         substitute[(d_sales['d'] > END_TRAIN)] = np.nan
         grid_df['sales'] = substitute
 
@@ -252,7 +252,7 @@ for store_id in STORES:
         estimator = lgb.train(lgb_params,
                               train_data,
                               valid_sets = [valid_data],
-                              verbose_eval = 100
+                             #  verbose_eval = 100
                               
                               )
         

@@ -7,7 +7,7 @@
 # In[ ]:
 
 
-dir_ = '/home/artemis/M5/A1-Yeon/' # input only here
+dir_ = '../../' # input only here
 
 
 # #### setting other directory
@@ -254,7 +254,7 @@ for cv in cvs:
             valid_data = lgb.Dataset(grid_df[vl_mask][model_var], 
                                label=grid_df[vl_mask]['sales'])
 
-            m_lgb = lgb.train(lgb_params, train_data, valid_sets = [valid_data, train_data], verbose_eval=100) 
+            m_lgb = lgb.train(lgb_params, train_data, valid_sets = [valid_data, train_data]) 
             model_name = model_dir+'non_recur_model_'+store+'_'+state+'.bin'
             pickle.dump(m_lgb, open(model_name, 'wb'))
             

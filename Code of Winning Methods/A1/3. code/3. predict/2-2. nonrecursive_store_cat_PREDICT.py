@@ -7,7 +7,7 @@
 # In[ ]:
 
 
-dir_ = '/home/artemis/M5/A1-Yeon/' # input only here
+dir_ = '../../' # input only here
 
 
 # #### setting other directory
@@ -283,10 +283,6 @@ os.chdir(log_dir)
 
 pri = [a for a in os.listdir() if 'storeandcat' in a]
 
-os.chdir(dir_)
-
-submission = pd.read_csv(raw_data_dir+'sample_submission.csv').set_index('id').iloc[30490:]
-sub_id = pd.DataFrame({'id':submission.index.tolist()})
 
 fcol = [f'F{i}' for i in range(1,29)]
 

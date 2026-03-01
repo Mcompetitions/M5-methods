@@ -1,17 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# ## Please input your directory for the top level folder
-# folder name : SUBMISSION MODEL
 
-# In[ ]:
+dir_ = '../../' # input only here
+# dir_ = '/A1/' # input only here
 
+# ../../2.\ data/
 
-dir_ = '/home/artemis/M5/A1-Yeon/' # input only here
-
-
-# In[ ]:
-
+# C:\Users\neuromancer\M5-methods\Code of Winning Methods\A1\1. document
 
 raw_data_dir = dir_+'2. data/'
 processed_data_dir = dir_+'2. data/processed/'
@@ -371,7 +367,11 @@ grid_df['date'] = pd.to_datetime(grid_df['date'])
 
 # Make some features from date
 grid_df['tm_d'] = grid_df['date'].dt.day.astype(np.int8)
-grid_df['tm_w'] = grid_df['date'].dt.week.astype(np.int8)
+
+## replacing newversion of week version 
+grid_df['tm_w'] = grid_df['date'].dt.isocalendar().week.astype(np.int8)
+
+# grid_df['tm_w'] = grid_df['date'].dt.week.astype(np.int8)
 grid_df['tm_m'] = grid_df['date'].dt.month.astype(np.int8)
 grid_df['tm_y'] = grid_df['date'].dt.year
 grid_df['tm_y'] = (grid_df['tm_y'] - grid_df['tm_y'].min()).astype(np.int8)
@@ -523,7 +523,7 @@ grid_df = grid_df[['id','d']+keep_cols]
 
 
 # In[ ]:
-
+### cat asdasdsad
 
 #################################################################################
 print('Save Mean/Std encoding')

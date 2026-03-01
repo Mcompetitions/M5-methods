@@ -7,7 +7,7 @@
 # In[ ]:
 
 
-dir_ = '/home/artemis/M5/A1-Yeon/' # input only here
+dir_ = '../../' # input only here
 
 
 # #### setting other directory

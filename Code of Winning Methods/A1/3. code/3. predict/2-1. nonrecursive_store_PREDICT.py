@@ -7,7 +7,7 @@
 # In[ ]:
 
 
-dir_ = '/home/artemis/M5/A1-Yeon/' # input only here
+dir_ = '../../' # input only here
 
 
 # #### setting other directory
@@ -291,10 +291,5 @@ for file in pri:
     sub_copy += sub_id.merge(temp, how='left', on='id').set_index('id').fillna(0)
 sub_copy.columns = fcol
 sub_copy.to_csv(submission_dir+'before_ensemble/submission_kaggle_nonrecursive_store.csv')
-
-
-# In[ ]:
-
-
 
 

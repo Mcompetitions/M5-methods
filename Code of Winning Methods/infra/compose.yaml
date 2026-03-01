@@ -1,0 +1,13 @@
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: infra/Dockerfile
+    ports:
+      - 8888:8888
+    volumes:
+      - ../:/app
+    working_dir: /app
+    environment:
+      - ENV=production
+      - JUPYTER_TOKEN=1234

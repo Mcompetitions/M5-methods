@@ -7,7 +7,7 @@
 # In[ ]:
 
 
-dir_ = '/home/artemis/M5/A1-Yeon/' # input only here
+dir_ = '../../' # input only here
 
 
 # #### setting other directory
@@ -20,7 +20,6 @@ processed_data_dir = dir_+'2. data/processed/'
 log_dir = dir_+'4. logs/'
 model_dir = dir_+'5. models/'
 submission_dir = dir_+'6. submissions/'
-
 
 # In[ ]:
 

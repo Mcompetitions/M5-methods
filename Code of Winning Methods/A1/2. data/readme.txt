@@ -5,4 +5,4 @@ This folder should contain the following files:
 - sample_submission.csv
 - sell_prices.csv
 
-These can be found in the M5 competition repo.
+These can be found in the M5 competition repo. 
